@@ -1,0 +1,70 @@
+{
+    "name": "trgino/wp-yetisearch",
+    "description": "Pure-PHP SQLite FTS5 search for WordPress powered by YetiSearch.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.2",
+        "psr/log": "^3.0",
+        "yetidevworks/yetisearch": "^2.5"
+    },
+    "require-dev": {
+        "brain/monkey": "^2.7",
+        "brianhenryie/strauss": "0.31",
+        "php-stubs/wp-cli-stubs": "^2.12",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.0",
+        "squizlabs/php_codesniffer": "^3.13",
+        "szepeviktor/phpstan-wordpress": "^2.0",
+        "wp-coding-standards/wpcs": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "WpYetiSearch\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WpYetiSearch\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "platform-check": false,
+        "sort-packages": true,
+        "platform": {
+            "php": "8.2.0"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false
+        }
+    },
+    "extra": {
+        "strauss": {
+            "target_directory": "vendor-prefixed",
+            "namespace_prefix": "WpYetiSearch\\Vendor\\",
+            "classmap_prefix": "WpYetiSearch_Vendor_",
+            "constant_prefix": "WPYETISEARCH_VENDOR_",
+            "packages": [
+                "yetidevworks/yetisearch",
+                "psr/log"
+            ],
+            "update_call_sites": true,
+            "delete_vendor_packages": true
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:unit": "phpunit --testsuite unit",
+        "test:integration": "phpunit --testsuite integration",
+        "analyse": "phpstan analyse --memory-limit=1G",
+        "cs": "phpcs --runtime-set installed_paths vendor/wp-coding-standards/wpcs,vendor/phpcsstandards/phpcsutils,vendor/phpcsstandards/phpcsextra",
+        "cs-fix": "phpcbf --runtime-set installed_paths vendor/wp-coding-standards/wpcs,vendor/phpcsstandards/phpcsutils,vendor/phpcsstandards/phpcsextra",
+        "verify": [
+            "@test",
+            "@analyse",
+            "@cs"
+        ],
+        "bump-version": "php bin/bump-version.php",
+        "coverage": "phpunit --coverage-text --coverage-filter src"
+    }
+}

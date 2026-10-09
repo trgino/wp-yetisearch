@@ -1,0 +1,19 @@
+/vendor/
+/vendor-prefixed/
+/build/
+/.phpunit.cache/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+# E2E tests
+/node_modules/
+/playwright-report/
+/test-results/
+/blob-report/
+/.wp-env/
+.wp-env.override.json
+/.agents/
+/skills-lock.json
+/docs/
+/wpml/
+/polylang/

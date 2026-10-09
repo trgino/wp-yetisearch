@@ -1,0 +1,1 @@
+{"plugins": [".", "./wpml/plugins/sitepress-multilingual-cms", "./wpml/plugins/wpml-string-translation", "./wpml/plugins/sitepress-multilingual-cms-activator"]}

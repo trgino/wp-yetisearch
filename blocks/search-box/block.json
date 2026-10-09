@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "yetisearch/search-box",
+  "title": "WP YetiSearch",
+  "category": "widgets",
+  "description": "Site search box with live suggestions.",
+  "textdomain": "wp-yetisearch",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "yetisearch-search-box-editor",
+  "render": "file:./render.php"
+}

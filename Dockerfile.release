@@ -1,0 +1,18 @@
+# Release builder for WP YetiSearch.
+# Runs composer install, Strauss prefixing and pot generation on Linux,
+# avoiding Windows path quirks in the toolchain.
+FROM php:8.2-cli
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git unzip zip libzip-dev \
+    && docker-php-ext-install zip \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=wordpress:cli-php8.2 /usr/local/bin/wp /usr/local/bin/wp
+
+# wp-cli i18n-command for `wp i18n make-pot` (network needed at build time).
+RUN wp package install wp-cli/i18n-command --allow-root || true
+
+WORKDIR /src
+ENTRYPOINT ["/src/bin/release-inside.sh"]

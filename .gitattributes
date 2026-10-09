@@ -1,0 +1,2 @@
+# Normalize PHP line endings so PHPCS sees LF on every checkout.
+*.php text eol=lf

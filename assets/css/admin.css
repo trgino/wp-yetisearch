@@ -1,0 +1,108 @@
+/* WP YetiSearch admin. Everything is scoped to .yetisearch-admin. */
+.yetisearch-admin .yetisearch-health {
+  max-width: 720px;
+}
+
+.yetisearch-admin .yetisearch-health-ok {
+  color: #46b450;
+}
+
+.yetisearch-admin .yetisearch-health-fail {
+  color: #dc3232;
+}
+
+.yetisearch-admin .yetisearch-card {
+  max-width: none;
+  margin-top: 12px;
+}
+
+.yetisearch-admin .yetisearch-checklist {
+  background: #f0f6fc;
+  border: 1px solid #c3d9ec;
+  border-left: 4px solid #72aee6;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin: 0 0 16px;
+}
+
+.yetisearch-admin .yetisearch-checklist h2 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.yetisearch-admin .yetisearch-checklist ol {
+  margin: 0 0 8px 4px;
+  list-style: none;
+  padding: 0;
+}
+
+.yetisearch-admin .yetisearch-checklist li {
+  margin-bottom: 6px;
+}
+
+.yetisearch-admin .yetisearch-checklist li::before {
+  content: "\25cb";
+  color: #787c82;
+  margin-right: 8px;
+}
+
+.yetisearch-admin .yetisearch-checklist li[data-done="1"]::before {
+  content: "\2713";
+  color: #008a20;
+  font-weight: 700;
+}
+
+.yetisearch-admin .yetisearch-checklist li[data-done="1"] a {
+  color: #008a20;
+}
+
+.yetisearch-admin .yetisearch-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  align-items: center;
+  padding: 10px 14px;
+  margin: 12px 0;
+  background: #fff;
+  border: 1px solid #dcdcde;
+  border-radius: 4px;
+}
+
+.yetisearch-admin .yetisearch-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: baseline;
+}
+
+.yetisearch-admin .yetisearch-dot--ok {
+  background: #46b450;
+}
+
+.yetisearch-admin .yetisearch-dot--bad {
+  background: #dc3232;
+}
+
+.yetisearch-admin pre {
+  max-width: 720px;
+  padding: 12px;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.yetisearch-admin progress {
+  width: 240px;
+  vertical-align: middle;
+}
+
+.yetisearch-admin .yetisearch-log {
+  max-width: 100%;
+  max-height: 320px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

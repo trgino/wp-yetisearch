@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  static:
+    name: PHPUnit + PHPStan + PHPCS
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: pdo_sqlite, sqlite3, mbstring, intl, json
+          coverage: none
+          tools: composer:v2
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v6
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-php8.2-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php8.2-composer-
+
+      - name: Install dependencies
+        run: composer install --no-progress --prefer-dist
+
+      - name: Verify
+        run: composer verify
+
+      - name: Version consistency
+        run: |
+          HEADER="$(grep -m1 'Version:' wp-yetisearch.php | grep -o '[0-9][0-9.]*')"
+          STABLE="$(grep -m1 '^Stable tag:' readme.txt | grep -o '[0-9][0-9.]*')"
+          CONSTANT="$(grep -m1 "define( *'WPYETISEARCH_VERSION'" wp-yetisearch.php | grep -o '[0-9][0-9.]*')"
+          echo "header=$HEADER stable=$STABLE constant=$CONSTANT"
+          test -n "$HEADER" && test "$HEADER" = "$STABLE" && test "$HEADER" = "$CONSTANT"

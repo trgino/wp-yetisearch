@@ -1,0 +1,1 @@
+{"plugins": [".", "https://downloads.wordpress.org/plugin/woocommerce.latest-stable.zip", "https://downloads.wordpress.org/plugin/polylang.latest-stable.zip", "./polylang/plugins/polylang-pro", "./polylang/plugins/polylang-wc"]}

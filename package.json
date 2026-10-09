@@ -1,0 +1,20 @@
+{
+  "name": "wp-yetisearch-e2e",
+  "private": true,
+  "version": "1.0.0",
+  "description": "E2E tests for WP YetiSearch using @wordpress/env and Playwright",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:debug": "playwright test --debug",
+    "test:e2e:ui": "playwright test --ui",
+    "wp-env:start": "wp-env start",
+    "wp-env:stop": "wp-env stop",
+    "wp-env:clean": "wp-env clean"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48",
+    "@wordpress/env": "^10.0",
+    "typescript": "^5.6"
+  }
+}

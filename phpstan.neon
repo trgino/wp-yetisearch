@@ -1,0 +1,26 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+parameters:
+    level: 8
+    paths:
+        - src
+        - wp-yetisearch.php
+        - uninstall.php
+    bootstrapFiles:
+        - tests/phpstan-bootstrap.php
+    scanFiles:
+        - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - identifier: missingType.iterableValue
+        -
+            identifier: smaller.alwaysFalse
+            path: wp-yetisearch.php
+            # Runtime guard: plugin is distributed as zip, not via composer.
+            # PHP < 8.2 must be rejected at runtime even though composer.json says >=8.2.
+        -
+            identifier: greaterOrEqual.alwaysTrue
+            path: src/Core/HealthChecker.php
+            # Runtime guard: PHP_VERSION_ID >= 80200 is always true under composer's
+            # php: >=8.2 constraint, but the plugin is distributed as a zip and may
+            # run on older PHP. The check must remain for runtime safety.

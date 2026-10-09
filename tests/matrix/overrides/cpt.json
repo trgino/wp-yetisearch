@@ -1,0 +1,6 @@
+{
+  "plugins": ["."],
+  "mappings": {
+    "wp-content/mu-plugins/matrix-cpt.php": "./tests/matrix/mu-plugins/matrix-cpt.php"
+  }
+}
