@@ -1,0 +1,894 @@
+# Copyright (C) 2026 trgino
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP YetiSearch 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/src\n"
+"Last-Translator: trgino\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-08T12:20:31+00:00\n"
+"PO-Revision-Date: 2026-10-09\n"
+"X-Generator: Muse Spark\n"
+"X-Domain: wp-yetisearch\n"
+"Language: tr\n"
+
+#. Plugin Name of the plugin
+#: wp-yetisearch.php
+msgid "WP YetiSearch"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: wp-yetisearch.php
+msgid "https://github.com/trgino/wp-yetisearch"
+msgstr ""
+
+#. Description of the plugin
+#: wp-yetisearch.php
+msgid "Fast, typo-tolerant and semantic search for WordPress powered by SQLite FTS5 (YetiSearch)."
+msgstr "SQLite FTS5 (YetiSearch) destekli, yazım hatasına dayanıklı ve anlamsal WordPress araması."
+
+#. Author of the plugin
+#: wp-yetisearch.php
+msgid "trgino"
+msgstr ""
+
+#: Admin/FieldLabels.php:15
+msgid "General"
+msgstr "Genel"
+
+#: Admin/FieldLabels.php:16
+msgid "Content"
+msgstr "İçerik"
+
+#: Admin/FieldLabels.php:17
+msgid "Relevance"
+msgstr "Alaka Düzeyi"
+
+#: Admin/FieldLabels.php:18
+msgid "Language"
+msgstr "Dil"
+
+#: Admin/FieldLabels.php:19
+msgid "Display"
+msgstr "Görünüm"
+
+#: Admin/FieldLabels.php:20
+msgid "Facets & Geo"
+msgstr "Fasetler ve Konum"
+
+#: Admin/FieldLabels.php:21
+msgid "Semantic"
+msgstr "Semantik"
+
+#: Admin/FieldLabels.php:22
+msgid "Performance"
+msgstr "Performans"
+
+#: Admin/FieldLabels.php:23
+msgid "Maintenance"
+msgstr "Bakım"
+
+#: Admin/FieldLabels.php:47
+#: Admin/Views/tab-general.php:46
+msgid "Enable YetiSearch"
+msgstr "YetiSearch'i Etkinleştir"
+
+#: Admin/FieldLabels.php:47
+msgid "Take over front-end search. Locked until health checks pass."
+msgstr "Site içi aramayı devral. Sağlık denetimleri geçilene kadar kilitli."
+
+#: Admin/FieldLabels.php:48
+#: Admin/Views/tab-general.php:55
+msgid "Custom database directory"
+msgstr "Özel veritabanı dizini"
+
+#: Admin/FieldLabels.php:48
+#: Admin/Views/tab-general.php:58
+msgid "Absolute path; outside the web root is safest. Empty means uploads/yetisearch/."
+msgstr "Mutlak yol; web kök dizini dışı en güvenlisidir. Boş bırakılırsa uploads/yetisearch/ kullanılır."
+
+#: Admin/FieldLabels.php:49
+msgid "Post types to index"
+msgstr "Dizine eklenecek yazı türleri"
+
+#: Admin/FieldLabels.php:49
+msgid "Only published, password-less posts are indexed. Changing this requires a re-index."
+msgstr "Yalnızca yayımlanmış, parolasız yazılar dizine eklenir. Değişiklik yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:50
+msgid "Taxonomies to index"
+msgstr "Dizine eklenecek sınıflandırmalar"
+
+#: Admin/FieldLabels.php:50
+msgid "Term names become searchable text. Requires a re-index."
+msgstr "Terim adları aranabilir metin olur. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:51
+msgid "Meta keys to index"
+msgstr "Dizine eklenecek meta anahtarları"
+
+#: Admin/FieldLabels.php:51
+msgid "One key per line. Requires a re-index."
+msgstr "Satır başına bir anahtar. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:52
+msgid "Chunk size"
+msgstr "Parça boyutu"
+
+#: Admin/FieldLabels.php:52
+msgid "Long posts are split into chunks of this many characters. Requires a re-index."
+msgstr "Uzun yazılar bu karakter sayısıyla parçalara bölünür. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:53
+msgid "Chunk overlap"
+msgstr "Parça örtüşmesi"
+
+#: Admin/FieldLabels.php:53
+msgid "Overlap between neighboring chunks, at most half the chunk size. Requires a re-index."
+msgstr "Komşu parçalar arasındaki örtüşme, en fazla parça boyutunun yarısı kadar olur. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:54
+msgid "Title weight"
+msgstr "Başlık ağırlığı"
+
+#: Admin/FieldLabels.php:54
+#: Admin/FieldLabels.php:55
+#: Admin/FieldLabels.php:56
+#: Admin/FieldLabels.php:57
+#: Admin/FieldLabels.php:58
+msgid "Applied at query time; no re-index needed."
+msgstr "Sorgu anında uygulanır; yeniden dizin oluşturma gerekmez."
+
+#: Admin/FieldLabels.php:55
+msgid "Content weight"
+msgstr "İçerik ağırlığı"
+
+#: Admin/FieldLabels.php:56
+msgid "Excerpt weight"
+msgstr "Özet ağırlığı"
+
+#: Admin/FieldLabels.php:57
+msgid "Taxonomies weight"
+msgstr "Sınıflandırma ağırlığı"
+
+#: Admin/FieldLabels.php:58
+msgid "Meta weight"
+msgstr "Meta ağırlığı"
+
+#: Admin/FieldLabels.php:59
+msgid "Minimum score"
+msgstr "Asgari puan"
+
+#: Admin/FieldLabels.php:59
+msgid "Results below this BM25 score are dropped. Keep 0 unless noisy results appear on large sites."
+msgstr "Bu BM25 puanının altındaki sonuçlar elenir. Büyük sitelerde gürültülü sonuçlar görülmedikçe 0 bırak."
+
+#: Admin/FieldLabels.php:60
+msgid "Two-pass search"
+msgstr "İki aşamalı arama"
+
+#: Admin/FieldLabels.php:60
+msgid "Search primary fields first, then the full index."
+msgstr "Önce birincil alanlarda, sonra tüm dizinde ara."
+
+#: Admin/FieldLabels.php:61
+msgid "Primary fields"
+msgstr "Birincil alanlar"
+
+#: Admin/FieldLabels.php:61
+msgid "Fields searched in the first pass."
+msgstr "İlk aşamada aranan alanlar."
+
+#: Admin/FieldLabels.php:62
+msgid "Primary field limit"
+msgstr "Birincil alan sınırı"
+
+#: Admin/FieldLabels.php:62
+msgid "Maximum candidates taken from the first pass."
+msgstr "İlk aşamadan alınacak en fazla aday sayısı."
+
+#: Admin/FieldLabels.php:63
+msgid "Exact match boost"
+msgstr "Tam eşleşme katsayısı"
+
+#: Admin/FieldLabels.php:63
+msgid "Multiplier for exact phrase matches."
+msgstr "Tam ifade eşleşmeleri için çarpan."
+
+#: Admin/FieldLabels.php:64
+msgid "Exact terms boost"
+msgstr "Tam terim katsayısı"
+
+#: Admin/FieldLabels.php:64
+msgid "Multiplier when all exact terms are present."
+msgstr "Tüm terimler aynen bulunduğunda uygulanan çarpan."
+
+#: Admin/FieldLabels.php:65
+msgid "Fuzzy search"
+msgstr "Bulanık arama"
+
+#: Admin/FieldLabels.php:65
+msgid "Tolerate typos via trigram / Jaro-Winkler / Levenshtein consensus."
+msgstr "Trigram / Jaro-Winkler / Levenshtein uzlaşmasıyla yazım hatalarını tolere et."
+
+#: Admin/FieldLabels.php:66
+msgid "Fuzzy algorithm"
+msgstr "Bulanık arama algoritması"
+
+#: Admin/FieldLabels.php:66
+msgid "Which similarity measure drives typo correction."
+msgstr "Yazım düzeltmeyi hangi benzerlik ölçüsünün yönlendireceği."
+
+#: Admin/FieldLabels.php:67
+msgid "Fuzzy correction mode"
+msgstr "Bulanık düzeltme kipi"
+
+#: Admin/FieldLabels.php:67
+msgid "Rewrite the query to the corrected terms before searching."
+msgstr "Aramadan önce sorguyu düzeltilmiş terimlerle yeniden yaz."
+
+#: Admin/FieldLabels.php:68
+msgid "Correction threshold"
+msgstr "Düzeltme eşiği"
+
+#: Admin/FieldLabels.php:68
+msgid "Minimum confidence for applying a typo correction."
+msgstr "Yazım düzeltmesi uygulamak için asgari güven düzeyi."
+
+#: Admin/FieldLabels.php:69
+msgid "Levenshtein threshold"
+msgstr "Levenshtein eşiği"
+
+#: Admin/FieldLabels.php:69
+msgid "Maximum edit distance for Levenshtein matches."
+msgstr "Levenshtein eşleşmeleri için azami düzenleme mesafesi."
+
+#: Admin/FieldLabels.php:70
+msgid "Trigram threshold"
+msgstr "Trigram eşiği"
+
+#: Admin/FieldLabels.php:70
+msgid "Minimum trigram similarity for fuzzy matches."
+msgstr "Bulanık eşleşmeler için asgari trigram benzerliği."
+
+#: Admin/FieldLabels.php:71
+msgid "Jaro-Winkler threshold"
+msgstr "Jaro-Winkler eşiği"
+
+#: Admin/FieldLabels.php:71
+msgid "Minimum Jaro-Winkler similarity for fuzzy matches."
+msgstr "Bulanık eşleşmeler için asgari Jaro-Winkler benzerliği."
+
+#: Admin/FieldLabels.php:72
+msgid "Minimum term frequency"
+msgstr "Asgari terim sıklığı"
+
+#: Admin/FieldLabels.php:72
+msgid "A term must occur this often before it can be a correction target."
+msgstr "Bir terimin düzeltme hedefi olabilmesi için bu sıklıkta geçmesi gerekir."
+
+#: Admin/FieldLabels.php:73
+msgid "Fuzzy score penalty"
+msgstr "Bulanık puan cezası"
+
+#: Admin/FieldLabels.php:73
+msgid "Score discount applied to fuzzy-corrected matches."
+msgstr "Bulanık düzeltilmiş eşleşmelere uygulanan puan indirimi."
+
+#: Admin/FieldLabels.php:74
+msgid "Fuzzy last token only"
+msgstr "Yalnızca son belirteci düzelt"
+
+#: Admin/FieldLabels.php:74
+msgid "Apply typo correction to the last query token only."
+msgstr "Yazım düzeltmesini yalnızca sorgunun son belirtecine uygula."
+
+#: Admin/FieldLabels.php:75
+msgid "Prefix last token"
+msgstr "Son belirteci önek olarak eşleştir"
+
+#: Admin/FieldLabels.php:75
+msgid "Match the last token as a prefix. Requires a re-index (FTS prefix index)."
+msgstr "Son belirteci önek olarak eşleştir. Yeniden dizin oluşturmayı gerektirir (FTS önek dizini)."
+
+#: Admin/FieldLabels.php:76
+#: Frontend/Assets.php:44
+msgid "Search suggestions"
+msgstr "Arama önerileri"
+
+#: Admin/FieldLabels.php:76
+msgid "Offer \"did you mean\" suggestions for typo queries."
+msgstr "Yazım hatalı sorgular için \"bunu mu demek istedin\" önerileri sun."
+
+#: Admin/FieldLabels.php:77
+msgid "Stemmer language"
+msgstr "Kök bulucu dili"
+
+#: Admin/FieldLabels.php:77
+msgid "Auto detects English/French/German/Spanish. Requires a re-index."
+msgstr "İngilizce/Fransızca/Almanca/İspanyolcayı otomatik algılar. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:78
+msgid "Minimum word length"
+msgstr "Asgari sözcük uzunluğu"
+
+#: Admin/FieldLabels.php:78
+msgid "Shorter tokens are dropped at index time. Requires a re-index."
+msgstr "Daha kısa belirteçler dizinleme sırasında atılır. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:79
+msgid "Strip punctuation"
+msgstr "Noktalama işaretlerini kaldır"
+
+#: Admin/FieldLabels.php:79
+msgid "Remove punctuation during analysis. Requires a re-index."
+msgstr "Çözümleme sırasında noktalama işaretlerini kaldır. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:80
+msgid "Expand contractions"
+msgstr "Kısaltmaları genişlet"
+
+#: Admin/FieldLabels.php:80
+msgid "Expand don't → do not etc. Requires a re-index."
+msgstr "don't → do not gibi kısaltmaları genişlet. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:81
+msgid "Custom stop words"
+msgstr "Özel durak kelimeler"
+
+#: Admin/FieldLabels.php:81
+msgid "One word per line. Requires a re-index."
+msgstr "Satır başına bir sözcük. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:82
+msgid "Disable stop words"
+msgstr "Durak kelimeleri kapat"
+
+#: Admin/FieldLabels.php:82
+msgid "Index even the most common words. Requires a re-index."
+msgstr "En yaygın sözcükleri bile dizine ekle. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:83
+msgid "Enable synonyms"
+msgstr "Eş anlamlıları etkinleştir"
+
+#: Admin/FieldLabels.php:83
+msgid "Expand queries with the synonym map below."
+msgstr "Sorguları aşağıdaki eş anlamlı eşlemesiyle genişlet."
+
+#: Admin/FieldLabels.php:84
+msgid "Synonyms"
+msgstr "Eş anlamlılar"
+
+#: Admin/FieldLabels.php:84
+msgid "One per line: term: synonym1, synonym2"
+msgstr "Satır başına bir tane: terim: eşanlamlı1, eşanlamlı2"
+
+#: Admin/FieldLabels.php:85
+msgid "Highlight matches"
+msgstr "Eşleşmeleri vurgula"
+
+#: Admin/FieldLabels.php:85
+msgid "Wrap matching terms in the highlight tag."
+msgstr "Eşleşen terimleri vurgulama etiketiyle sarmala."
+
+#: Admin/FieldLabels.php:86
+msgid "Highlight tag"
+msgstr "Vurgulama etiketi"
+
+#: Admin/FieldLabels.php:86
+msgid "Only this tag is allowed in highlight HTML; everything else is escaped."
+msgstr "Vurgu HTML kodunda yalnızca bu etikete izin verilir; geri kalan her şey kaçışlı yazılır."
+
+#: Admin/FieldLabels.php:87
+msgid "Snippet length"
+msgstr "Parçacık uzunluğu"
+
+#: Admin/FieldLabels.php:87
+msgid "Characters shown around each match."
+msgstr "Her eşleşmenin çevresinde gösterilen karakter sayısı."
+
+#: Admin/FieldLabels.php:88
+msgid "Typeahead suggestions"
+msgstr "Yazarken öneri"
+
+#: Admin/FieldLabels.php:88
+msgid "Suggest results while typing in search fields."
+msgstr "Arama alanlarına yazarken sonuç öner."
+
+#: Admin/FieldLabels.php:89
+msgid "Typeahead selector"
+msgstr "Yazarken öneri seçicisi"
+
+#: Admin/FieldLabels.php:89
+msgid "CSS selector for search inputs to enhance."
+msgstr "İyileştirilecek arama alanları için CSS seçici."
+
+#: Admin/FieldLabels.php:90
+msgid "Typeahead debounce (ms)"
+msgstr "Yazarken öneri gecikmesi (ms)"
+
+#: Admin/FieldLabels.php:90
+msgid "Wait this long after typing stops before searching."
+msgstr "Yazma durduktan sonra arama için bu kadar bekle."
+
+#: Admin/FieldLabels.php:91
+msgid "Typeahead minimum characters"
+msgstr "Yazarken öneri için asgari karakter"
+
+#: Admin/FieldLabels.php:91
+msgid "Start suggesting after this many characters."
+msgstr "Bu karakter sayısından sonra önermeye başla."
+
+#: Admin/FieldLabels.php:92
+msgid "Typeahead maximum results"
+msgstr "Yazarken öneri azami sonuç sayısı"
+
+#: Admin/FieldLabels.php:92
+msgid "Suggestions shown per keystroke."
+msgstr "Tuş vuruşu başına gösterilen öneri sayısı."
+
+#: Admin/FieldLabels.php:93
+msgid "Enable facets"
+msgstr "Fasetleri etkinleştir"
+
+#: Admin/FieldLabels.php:93
+msgid "Count results per post type and taxonomy."
+msgstr "Yazı türü ve sınıflandırmaya göre sonuç say."
+
+#: Admin/FieldLabels.php:94
+msgid "Post type facet"
+msgstr "Yazı türü faseti"
+
+#: Admin/FieldLabels.php:94
+msgid "Include a post-type facet in results."
+msgstr "Sonuçlara yazı türü faseti ekle."
+
+#: Admin/FieldLabels.php:95
+msgid "Facet taxonomies"
+msgstr "Faset sınıflandırmaları"
+
+#: Admin/FieldLabels.php:95
+msgid "Only the primary term per post is counted. Requires a re-index."
+msgstr "Yazı başına yalnızca birincil terim sayılır. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:96
+msgid "Facet limit"
+msgstr "Faset sınırı"
+
+#: Admin/FieldLabels.php:96
+msgid "Values returned per facet."
+msgstr "Faset başına döndürülen değer sayısı."
+
+#: Admin/FieldLabels.php:97
+msgid "Enable geo search"
+msgstr "Coğrafi aramayı etkinleştir"
+
+#: Admin/FieldLabels.php:97
+msgid "Without SQLite R-Tree, results stay exact but queries are slower. Requires a re-index."
+msgstr "SQLite R-Tree olmadan sonuçlar kesin kalır ancak sorgular yavaşlar. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:98
+msgid "Latitude meta key"
+msgstr "Enlem meta anahtarı"
+
+#: Admin/FieldLabels.php:98
+msgid "Post meta key holding the latitude. Requires a re-index."
+msgstr "Enlemi tutan yazı meta anahtarı. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:99
+msgid "Longitude meta key"
+msgstr "Boylam meta anahtarı"
+
+#: Admin/FieldLabels.php:99
+msgid "Post meta key holding the longitude. Requires a re-index."
+msgstr "Boylamı tutan yazı meta anahtarı. Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:100
+msgid "Default radius"
+msgstr "Varsayılan yarıçap"
+
+#: Admin/FieldLabels.php:100
+msgid "In the unit selected below."
+msgstr "Aşağıda seçilen birim cinsinden."
+
+#: Admin/FieldLabels.php:101
+msgid "Distance unit"
+msgstr "Mesafe birimi"
+
+#: Admin/FieldLabels.php:101
+msgid "Kilometers or miles."
+msgstr "Kilometre veya mil."
+
+#: Admin/FieldLabels.php:102
+msgid "Distance ranges"
+msgstr "Mesafe aralıkları"
+
+#: Admin/FieldLabels.php:102
+msgid "Comma-separated ranges for the distance facet."
+msgstr "Mesafe faseti için virgülle ayrılmış aralıklar."
+
+#: Admin/FieldLabels.php:103
+msgid "Distance weight"
+msgstr "Mesafe ağırlığı"
+
+#: Admin/FieldLabels.php:103
+msgid "How strongly distance influences ranking (0–1)."
+msgstr "Mesafenin sıralamayı ne ölçüde etkilediği (0–1)."
+
+#: Admin/FieldLabels.php:104
+msgid "Price facet"
+msgstr "Fiyat faseti"
+
+#: Admin/FieldLabels.php:104
+msgid "Bucket results by price ranges below. Prices index automatically; no re-index needed to toggle."
+msgstr "Sonuçları aşağıdaki fiyat aralıklarına göre grupla. Fiyatlar otomatik dizine eklenir; açıp kapatmak için yeniden dizin gerekmez."
+
+#: Admin/FieldLabels.php:105
+msgid "Price meta key"
+msgstr "Fiyat meta anahtarı"
+
+#: Admin/FieldLabels.php:105
+msgid "Post meta key holding the numeric price (WooCommerce: _price). Requires a re-index."
+msgstr "Sayısal fiyatı tutan yazı meta anahtarı (WooCommerce: _price). Yeniden dizin oluşturmayı gerektirir."
+
+#: Admin/FieldLabels.php:106
+msgid "Price ranges"
+msgstr "Fiyat aralıkları"
+
+#: Admin/FieldLabels.php:106
+msgid "Comma-separated upper bounds, e.g. 100, 500, 1000. Applied at query time."
+msgstr "Virgülle ayrılmış üst sınırlar, örn. 100, 500, 1000. Sorgu anında uygulanır."
+
+#: Admin/FieldLabels.php:107
+msgid "Enable semantic search"
+msgstr "Anlamsal aramayı etkinleştir"
+
+#: Admin/FieldLabels.php:107
+msgid "Hybrid keyword + embedding search via an OpenAI-compatible API."
+msgstr "OpenAI uyumlu API üzerinden karma anahtar sözcük + gömme (embedding) araması."
+
+#: Admin/FieldLabels.php:108
+msgid "Embedding endpoint"
+msgstr "Gömme (embedding) uç noktası"
+
+#: Admin/FieldLabels.php:108
+msgid "Base URL, e.g. https://api.openai.com/v1 or http://localhost:11434/v1"
+msgstr "Temel URL, örn. https://api.openai.com/v1 veya http://localhost:11434/v1"
+
+#: Admin/FieldLabels.php:109
+msgid "API key"
+msgstr "API anahtarı"
+
+#: Admin/FieldLabels.php:109
+msgid "Write-only: blank keeps the stored key. YETISEARCH_SEMANTIC_API_KEY wins."
+msgstr "Yalnızca yazılır: boş bırakılırsa kayıtlı anahtar korunur. YETISEARCH_SEMANTIC_API_KEY önceliklidir."
+
+#: Admin/FieldLabels.php:110
+msgid "Embedding model"
+msgstr "Gömme (embedding) modeli"
+
+#: Admin/FieldLabels.php:110
+msgid "Model id sent to the embedding endpoint."
+msgstr "Gömme uç noktasına gönderilen model kimliği."
+
+#: Admin/FieldLabels.php:111
+msgid "Dimensions"
+msgstr "Boyut sayısı"
+
+#: Admin/FieldLabels.php:111
+msgid "0 means auto-detect from the first response."
+msgstr "0, ilk yanıttan otomatik algılama anlamına gelir."
+
+#: Admin/FieldLabels.php:112
+msgid "Query prefix"
+msgstr "Sorgu öneki"
+
+#: Admin/FieldLabels.php:112
+msgid "Prepended to queries, e.g. for nomic-embed-text."
+msgstr "Sorguların başına eklenir, örn. nomic-embed-text için."
+
+#: Admin/FieldLabels.php:113
+msgid "Document prefix"
+msgstr "Belge öneki"
+
+#: Admin/FieldLabels.php:113
+msgid "Prepended to indexed documents."
+msgstr "Dizine eklenen belgelerin başına eklenir."
+
+#: Admin/FieldLabels.php:114
+msgid "Semantic weight"
+msgstr "Anlamsal ağırlık"
+
+#: Admin/FieldLabels.php:114
+msgid "Hybrid balance between keyword and vector scores."
+msgstr "Anahtar sözcük ve vektör puanları arasındaki karma denge."
+
+#: Admin/FieldLabels.php:115
+msgid "Minimum similarity"
+msgstr "Asgari benzerlik"
+
+#: Admin/FieldLabels.php:115
+msgid "Vector hits below this are discarded."
+msgstr "Bunun altındaki vektör eşleşmeleri elenir."
+
+#: Admin/FieldLabels.php:116
+msgid "Minimum margin"
+msgstr "Asgari fark"
+
+#: Admin/FieldLabels.php:116
+msgid "Noise gate: semantic must beat keyword by this margin."
+msgstr "Gürültü eşiği: anlamsal sonucun anahtar sözcüğü bu farkla geçmesi gerekir."
+
+#: Admin/FieldLabels.php:117
+msgid "Calibration"
+msgstr "Kalibrasyon"
+
+#: Admin/FieldLabels.php:117
+msgid "Auto measures the noise floor; off disables the gate."
+msgstr "Otomatik, gürültü tabanını ölçer; kapalıysa eşik kalkar."
+
+#: Admin/FieldLabels.php:118
+msgid "Calibration strictness"
+msgstr "Kalibrasyon katılığı"
+
+#: Admin/FieldLabels.php:118
+msgid "Higher rejects more semantic noise."
+msgstr "Değer yükseldikçe anlamsal gürültü daha çok elenir."
+
+#: Admin/FieldLabels.php:119
+msgid "Embedding batch size"
+msgstr "Gömme (embedding) toplu işlem boyutu"
+
+#: Admin/FieldLabels.php:119
+msgid "Documents embedded per cron/AJAX batch."
+msgstr "Cron/AJAX toplu işlemi başına gömülen belge sayısı."
+
+#: Admin/FieldLabels.php:120
+msgid "Query timeout (s)"
+msgstr "Sorgu zaman aşımı (sn)"
+
+#: Admin/FieldLabels.php:120
+msgid "Embedding calls slower than this fall back to keyword search."
+msgstr "Bundan yavaş gömme çağrıları anahtar sözcük aramasına döner."
+
+#: Admin/FieldLabels.php:121
+msgid "Semantic in typeahead"
+msgstr "Yazarken öneride anlamsal arama"
+
+#: Admin/FieldLabels.php:121
+msgid "Off by default to keep keystroke latency low."
+msgstr "Tuş gecikmesini düşük tutmak için varsayılan olarak kapalı."
+
+#: Admin/FieldLabels.php:122
+msgid "Embed via cron"
+msgstr "Cron ile gömme"
+
+#: Admin/FieldLabels.php:122
+msgid "Embed pending documents every five minutes."
+msgstr "Bekleyen belgeleri beş dakikada bir göm."
+
+#: Admin/FieldLabels.php:123
+msgid "Query cache"
+msgstr "Sorgu önbelleği"
+
+#: Admin/FieldLabels.php:123
+msgid "Cache search results for repeated queries."
+msgstr "Yinelenen sorgular için arama sonuçlarını önbelleğe al."
+
+#: Admin/FieldLabels.php:124
+msgid "Cache TTL (s)"
+msgstr "Önbellek ömrü (sn)"
+
+#: Admin/FieldLabels.php:124
+msgid "How long cached results stay valid."
+msgstr "Önbelleğe alınan sonuçların geçerlilik süresi."
+
+#: Admin/FieldLabels.php:125
+msgid "Cache max size"
+msgstr "Azami önbellek boyutu"
+
+#: Admin/FieldLabels.php:125
+msgid "Maximum cached queries held."
+msgstr "Tutulan azami önbellekli sorgu sayısı."
+
+#: Admin/FieldLabels.php:126
+msgid "Warm-up queries"
+msgstr "Isınma sorguları"
+
+#: Admin/FieldLabels.php:126
+msgid "One per line; replayed after clearing the cache."
+msgstr "Satır başına bir tane; önbellek temizlendikten sonra yeniden çalıştırılır."
+
+#: Admin/FieldLabels.php:127
+msgid "SQLite synchronous"
+msgstr "SQLite eşzamanlı yazma"
+
+#: Admin/FieldLabels.php:127
+msgid "FULL is safer, NORMAL is faster."
+msgstr "FULL daha güvenli, NORMAL daha hızlıdır."
+
+#: Admin/FieldLabels.php:128
+msgid "Maximum results"
+msgstr "Azami sonuç sayısı"
+
+#: Admin/FieldLabels.php:128
+msgid "De-duplication window pulled per search."
+msgstr "Arama başına çekilen yinelenenleri eleme penceresi."
+
+#: Admin/FieldLabels.php:129
+msgid "Search mode"
+msgstr "Arama kipi"
+
+#: Admin/FieldLabels.php:129
+msgid "Fast uses the engine total (may include removed posts); verified recounts public posts within the result window (slower transfer). Items are always verified."
+msgstr "Hızlı, motor toplamını kullanır (kaldırılmış yazıları içerebilir); doğrulamalı, sonuç penceresi içindeki herkese açık yazıları yeniden sayar (aktarım daha yavaş). Öğeler her zaman doğrulanır."
+
+#: Admin/SettingsPage.php:40
+#: Admin/SettingsPage.php:41
+#: Admin/Views/layout.php:22
+msgid "WpYetiSearch\\Vendor\\YetiSearch"
+msgstr ""
+
+#: Admin/SettingsPage.php:112
+msgid "YetiSearch settings changed the index schema. Please re-index on the Maintenance tab."
+msgstr "YetiSearch ayarları dizin şemasını değiştirdi. Bakım sekmesinde yeniden dizin oluştur."
+
+#: Admin/Views/field.php:61
+msgid "Clear stored key"
+msgstr "Kayıtlı anahtarı temizle"
+
+#: Admin/Views/layout.php:24
+msgid "Index schema changed — please re-index on the Maintenance tab."
+msgstr "Dizin şeması değişti — Bakım sekmesinde yeniden dizin oluştur."
+
+#: Admin/Views/tab-general.php:16
+msgid "System health"
+msgstr "Sistem sağlığı"
+
+#: Admin/Views/tab-general.php:22
+msgid "OK"
+msgstr "Tamam"
+
+#: Admin/Views/tab-general.php:22
+msgid "FAIL"
+msgstr "Başarısız"
+
+#: Admin/Views/tab-general.php:29
+msgid "Re-check"
+msgstr "Yeniden denetle"
+
+#. translators: %s: human-readable time difference, e.g. "2 hours"
+#: Admin/Views/tab-general.php:35
+#, php-format
+msgid "Last checked %s ago. Automatic checks run hourly."
+msgstr "Son denetim %s önce. Otomatik denetimler saatte bir çalışır."
+
+#: Admin/Views/tab-general.php:40
+msgid "Notice: SQLite 3.35 or newer is recommended for best performance. Search works on your version."
+msgstr "Not: En iyi performans için SQLite 3.35 veya yenisi önerilir. Arama bu sürümde çalışır."
+
+#: Admin/Views/tab-general.php:43
+msgid "Search"
+msgstr "Arama"
+
+#: Admin/Views/tab-general.php:50
+msgid "Locked: health checks are not passing."
+msgstr "Kilitli: sağlık denetimleri geçmiyor."
+
+#: Admin/Views/tab-general.php:59
+msgid "Current database:"
+msgstr "Geçerli veritabanı:"
+
+#: Admin/Views/tab-general.php:64
+msgid "Storage protection"
+msgstr "Depolama koruması"
+
+#: Admin/Views/tab-general.php:65
+msgid "Server detected:"
+msgstr "Algılanan sunucu:"
+
+#: Admin/Views/tab-general.php:67
+msgid "Probe directory protection"
+msgstr "Dizin korumasını yokla"
+
+#: Admin/Views/tab-general.php:71
+msgid "Add this rule to your server configuration:"
+msgstr "Sunucu yapılandırmasına bu kuralı ekle:"
+
+#: Admin/Views/tab-maintenance.php:5
+msgid "Index"
+msgstr "Dizin"
+
+#: Admin/Views/tab-maintenance.php:6
+msgid "Result totals reflect the index snapshot; private or deleted posts are always excluded from the listed items."
+msgstr "Sonuç toplamları dizin anlık görüntüsünü yansıtır; gizli veya silinmiş yazılar listelenen öğelerden her zaman çıkarılır."
+
+#: Admin/Views/tab-maintenance.php:8
+msgid "Re-index all posts"
+msgstr "Tüm yazıları yeniden dizine ekle"
+
+#: Admin/Views/tab-maintenance.php:9
+msgid "Force (drop and rebuild)"
+msgstr "Zorla (sil ve yeniden oluştur)"
+
+#: Admin/Views/tab-maintenance.php:13
+msgid "Embeddings"
+msgstr "Gömmeler (embedding)"
+
+#: Admin/Views/tab-maintenance.php:15
+msgid "Embed pending documents"
+msgstr "Bekleyen belgeleri göm"
+
+#: Admin/Views/tab-maintenance.php:16
+msgid "Calibrate noise gate"
+msgstr "Gürültü eşiğini kalibre et"
+
+#: Admin/Views/tab-maintenance.php:20
+msgid "Cache"
+msgstr "Önbellek"
+
+#: Admin/Views/tab-maintenance.php:22
+msgid "Clear cache"
+msgstr "Önbelleği temizle"
+
+#: Admin/Views/tab-maintenance.php:23
+msgid "Warm up cache"
+msgstr "Önbelleği ısıt"
+
+#: Admin/Views/tab-maintenance.php:27
+msgid "Error log"
+msgstr "Hata günlüğü"
+
+#: Admin/Views/tab-maintenance.php:27
+msgid "Warning and error records from the last 14 days. Newest last."
+msgstr "Son 14 güne ait uyarı ve hata kayıtları. En yenisi en sonda."
+
+#: Admin/Views/tab-maintenance.php:29
+msgid "Refresh log"
+msgstr "Günlüğü yenile"
+
+#: Admin/Views/tab-maintenance.php:30
+msgid "Clear log"
+msgstr "Günlüğü temizle"
+
+#: Features/SemanticBridge.php:137
+msgid "Every five minutes (WP YetiSearch)"
+msgstr "Beş dakikada bir (WP YetiSearch)"
+
+#: Frontend/Assets.php:45
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
+
+#. translators: %d: number of suggestions
+#: Frontend/Assets.php:47
+#, php-format
+msgid "%d suggestions available"
+msgstr "%d öneri mevcut"
+
+#: Frontend/RestController.php:72
+msgid "The search term is invalid."
+msgstr "Arama terimi geçersiz."
+
+#: Frontend/RestController.php:77
+msgid "This post type is not searchable."
+msgstr "Bu yazı türü aranamaz."
+
+#: Frontend/RestController.php:132
+msgid "Search is temporarily unavailable."
+msgstr "Arama geçici olarak kullanılamıyor."
+
+#: Search/template-tags.php:32
+msgid "Did you mean:"
+msgstr "Bunu mu demek istedin:"
+
+#: wp-yetisearch.php:26
+msgid "WP YetiSearch requires PHP 8.2 or newer."
+msgstr "WP YetiSearch, PHP 8.2 veya yenisini gerektirir."
+
+#: wp-yetisearch.php:50
+msgid "WP YetiSearch is missing its dependencies. Please reinstall the plugin."
+msgstr "WP YetiSearch bağımlılıkları eksik. Eklentiyi yeniden kur."

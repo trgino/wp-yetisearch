@@ -1,0 +1,894 @@
+# Copyright (C) 2026 trgino
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP YetiSearch 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/src\n"
+"Last-Translator: trgino\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-08T12:20:31+00:00\n"
+"PO-Revision-Date: 2026-10-09\n"
+"X-Generator: Muse Spark\n"
+"X-Domain: wp-yetisearch\n"
+
+#. Plugin Name of the plugin
+#: wp-yetisearch.php
+msgid "WP YetiSearch"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: wp-yetisearch.php
+msgid "https://github.com/trgino/wp-yetisearch"
+msgstr ""
+
+#. Description of the plugin
+#: wp-yetisearch.php
+msgid "Fast, typo-tolerant and semantic search for WordPress powered by SQLite FTS5 (YetiSearch)."
+msgstr "Ricerca rapida, tollerante ai refusi e semantica per WordPress basata su SQLite FTS5 (YetiSearch)."
+
+#. Author of the plugin
+#: wp-yetisearch.php
+msgid "trgino"
+msgstr ""
+
+#: Admin/FieldLabels.php:15
+msgid "General"
+msgstr "Generale"
+
+#: Admin/FieldLabels.php:16
+msgid "Content"
+msgstr "Contenuto"
+
+#: Admin/FieldLabels.php:17
+msgid "Relevance"
+msgstr "Rilevanza"
+
+#: Admin/FieldLabels.php:18
+msgid "Language"
+msgstr "Lingua"
+
+#: Admin/FieldLabels.php:19
+msgid "Display"
+msgstr "Visualizzazione"
+
+#: Admin/FieldLabels.php:20
+msgid "Facets & Geo"
+msgstr "Faccette e geo"
+
+#: Admin/FieldLabels.php:21
+msgid "Semantic"
+msgstr "Semantica"
+
+#: Admin/FieldLabels.php:22
+msgid "Performance"
+msgstr "Prestazioni"
+
+#: Admin/FieldLabels.php:23
+msgid "Maintenance"
+msgstr "Manutenzione"
+
+#: Admin/FieldLabels.php:47
+#: Admin/Views/tab-general.php:46
+msgid "Enable YetiSearch"
+msgstr "Attiva YetiSearch"
+
+#: Admin/FieldLabels.php:47
+msgid "Take over front-end search. Locked until health checks pass."
+msgstr "Assume il controllo della ricerca nel front-end. Bloccato finché i controlli di integrità non vengono superati."
+
+#: Admin/FieldLabels.php:48
+#: Admin/Views/tab-general.php:55
+msgid "Custom database directory"
+msgstr "Cartella database personalizzata"
+
+#: Admin/FieldLabels.php:48
+#: Admin/Views/tab-general.php:58
+msgid "Absolute path; outside the web root is safest. Empty means uploads/yetisearch/."
+msgstr "Percorso assoluto; fuori dalla root web è più sicuro. Se vuoto, viene usata uploads/yetisearch/."
+
+#: Admin/FieldLabels.php:49
+msgid "Post types to index"
+msgstr "Tipi di contenuto da indicizzare"
+
+#: Admin/FieldLabels.php:49
+msgid "Only published, password-less posts are indexed. Changing this requires a re-index."
+msgstr "Vengono indicizzati solo i contenuti pubblicati e senza password. La modifica richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:50
+msgid "Taxonomies to index"
+msgstr "Tassonomie da indicizzare"
+
+#: Admin/FieldLabels.php:50
+msgid "Term names become searchable text. Requires a re-index."
+msgstr "I nomi dei termini diventano testo ricercabile. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:51
+msgid "Meta keys to index"
+msgstr "Chiavi meta da indicizzare"
+
+#: Admin/FieldLabels.php:51
+msgid "One key per line. Requires a re-index."
+msgstr "Una chiave per riga. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:52
+msgid "Chunk size"
+msgstr "Dimensione dei blocchi"
+
+#: Admin/FieldLabels.php:52
+msgid "Long posts are split into chunks of this many characters. Requires a re-index."
+msgstr "Gli articoli lunghi vengono suddivisi in blocchi di questo numero di caratteri. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:53
+msgid "Chunk overlap"
+msgstr "Sovrapposizione dei blocchi"
+
+#: Admin/FieldLabels.php:53
+msgid "Overlap between neighboring chunks, at most half the chunk size. Requires a re-index."
+msgstr "Sovrapposizione tra blocchi adiacenti, al massimo metà della dimensione del blocco. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:54
+msgid "Title weight"
+msgstr "Peso del titolo"
+
+#: Admin/FieldLabels.php:54
+#: Admin/FieldLabels.php:55
+#: Admin/FieldLabels.php:56
+#: Admin/FieldLabels.php:57
+#: Admin/FieldLabels.php:58
+msgid "Applied at query time; no re-index needed."
+msgstr "Applicato al momento della ricerca; non è necessaria una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:55
+msgid "Content weight"
+msgstr "Peso del contenuto"
+
+#: Admin/FieldLabels.php:56
+msgid "Excerpt weight"
+msgstr "Peso dell'estratto"
+
+#: Admin/FieldLabels.php:57
+msgid "Taxonomies weight"
+msgstr "Peso delle tassonomie"
+
+#: Admin/FieldLabels.php:58
+msgid "Meta weight"
+msgstr "Peso dei meta"
+
+#: Admin/FieldLabels.php:59
+msgid "Minimum score"
+msgstr "Punteggio minimo"
+
+#: Admin/FieldLabels.php:59
+msgid "Results below this BM25 score are dropped. Keep 0 unless noisy results appear on large sites."
+msgstr "I risultati con punteggio BM25 inferiore vengono scartati. Mantenga 0, a meno che sui siti di grandi dimensioni non compaiano risultati poco pertinenti."
+
+#: Admin/FieldLabels.php:60
+msgid "Two-pass search"
+msgstr "Ricerca in due passaggi"
+
+#: Admin/FieldLabels.php:60
+msgid "Search primary fields first, then the full index."
+msgstr "Cerca prima nei campi principali, poi nell'intero indice."
+
+#: Admin/FieldLabels.php:61
+msgid "Primary fields"
+msgstr "Campi principali"
+
+#: Admin/FieldLabels.php:61
+msgid "Fields searched in the first pass."
+msgstr "Campi cercati nel primo passaggio."
+
+#: Admin/FieldLabels.php:62
+msgid "Primary field limit"
+msgstr "Limite dei campi principali"
+
+#: Admin/FieldLabels.php:62
+msgid "Maximum candidates taken from the first pass."
+msgstr "Numero massimo di candidati presi dal primo passaggio."
+
+#: Admin/FieldLabels.php:63
+msgid "Exact match boost"
+msgstr "Incremento per corrispondenza esatta"
+
+#: Admin/FieldLabels.php:63
+msgid "Multiplier for exact phrase matches."
+msgstr "Moltiplicatore per le corrispondenze di frasi esatte."
+
+#: Admin/FieldLabels.php:64
+msgid "Exact terms boost"
+msgstr "Incremento per termini esatti"
+
+#: Admin/FieldLabels.php:64
+msgid "Multiplier when all exact terms are present."
+msgstr "Moltiplicatore quando sono presenti tutti i termini esatti."
+
+#: Admin/FieldLabels.php:65
+msgid "Fuzzy search"
+msgstr "Ricerca fuzzy"
+
+#: Admin/FieldLabels.php:65
+msgid "Tolerate typos via trigram / Jaro-Winkler / Levenshtein consensus."
+msgstr "Tollera i refusi tramite consenso trigrammi / Jaro-Winkler / Levenshtein."
+
+#: Admin/FieldLabels.php:66
+msgid "Fuzzy algorithm"
+msgstr "Algoritmo fuzzy"
+
+#: Admin/FieldLabels.php:66
+msgid "Which similarity measure drives typo correction."
+msgstr "Misura di similarità usata per la correzione dei refusi."
+
+#: Admin/FieldLabels.php:67
+msgid "Fuzzy correction mode"
+msgstr "Modalità di correzione fuzzy"
+
+#: Admin/FieldLabels.php:67
+msgid "Rewrite the query to the corrected terms before searching."
+msgstr "Riscrive la query con i termini corretti prima della ricerca."
+
+#: Admin/FieldLabels.php:68
+msgid "Correction threshold"
+msgstr "Soglia di correzione"
+
+#: Admin/FieldLabels.php:68
+msgid "Minimum confidence for applying a typo correction."
+msgstr "Livello minimo di confidenza per applicare una correzione dei refusi."
+
+#: Admin/FieldLabels.php:69
+msgid "Levenshtein threshold"
+msgstr "Soglia di Levenshtein"
+
+#: Admin/FieldLabels.php:69
+msgid "Maximum edit distance for Levenshtein matches."
+msgstr "Distanza massima di modifica per le corrispondenze Levenshtein."
+
+#: Admin/FieldLabels.php:70
+msgid "Trigram threshold"
+msgstr "Soglia dei trigrammi"
+
+#: Admin/FieldLabels.php:70
+msgid "Minimum trigram similarity for fuzzy matches."
+msgstr "Similarità minima dei trigrammi per le corrispondenze fuzzy."
+
+#: Admin/FieldLabels.php:71
+msgid "Jaro-Winkler threshold"
+msgstr "Soglia Jaro-Winkler"
+
+#: Admin/FieldLabels.php:71
+msgid "Minimum Jaro-Winkler similarity for fuzzy matches."
+msgstr "Similarità minima Jaro-Winkler per le corrispondenze fuzzy."
+
+#: Admin/FieldLabels.php:72
+msgid "Minimum term frequency"
+msgstr "Frequenza minima dei termini"
+
+#: Admin/FieldLabels.php:72
+msgid "A term must occur this often before it can be a correction target."
+msgstr "Un termine deve occorrere con questa frequenza prima di poter diventare un obiettivo di correzione."
+
+#: Admin/FieldLabels.php:73
+msgid "Fuzzy score penalty"
+msgstr "Penalità di punteggio fuzzy"
+
+#: Admin/FieldLabels.php:73
+msgid "Score discount applied to fuzzy-corrected matches."
+msgstr "Sconto di punteggio applicato alle corrispondenze corrette con fuzzy."
+
+#: Admin/FieldLabels.php:74
+msgid "Fuzzy last token only"
+msgstr "Fuzzy solo sull'ultimo token"
+
+#: Admin/FieldLabels.php:74
+msgid "Apply typo correction to the last query token only."
+msgstr "Applica la correzione dei refusi solo all'ultimo token della query."
+
+#: Admin/FieldLabels.php:75
+msgid "Prefix last token"
+msgstr "Prefisso sull'ultimo token"
+
+#: Admin/FieldLabels.php:75
+msgid "Match the last token as a prefix. Requires a re-index (FTS prefix index)."
+msgstr "Considera l'ultimo token come prefisso. Richiede una nuova indicizzazione (indice dei prefissi FTS)."
+
+#: Admin/FieldLabels.php:76
+#: Frontend/Assets.php:44
+msgid "Search suggestions"
+msgstr "Suggerimenti di ricerca"
+
+#: Admin/FieldLabels.php:76
+msgid "Offer \"did you mean\" suggestions for typo queries."
+msgstr "Mostra suggerimenti «forse cercavi» per le query con refusi."
+
+#: Admin/FieldLabels.php:77
+msgid "Stemmer language"
+msgstr "Lingua dello stemmer"
+
+#: Admin/FieldLabels.php:77
+msgid "Auto detects English/French/German/Spanish. Requires a re-index."
+msgstr "Rileva automaticamente inglese/francese/tedesco/spagnolo. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:78
+msgid "Minimum word length"
+msgstr "Lunghezza minima delle parole"
+
+#: Admin/FieldLabels.php:78
+msgid "Shorter tokens are dropped at index time. Requires a re-index."
+msgstr "I token più corti vengono scartati durante l'indicizzazione. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:79
+msgid "Strip punctuation"
+msgstr "Rimuovi la punteggiatura"
+
+#: Admin/FieldLabels.php:79
+msgid "Remove punctuation during analysis. Requires a re-index."
+msgstr "Rimuove la punteggiatura durante l'analisi. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:80
+msgid "Expand contractions"
+msgstr "Espandi le contrazioni"
+
+#: Admin/FieldLabels.php:80
+msgid "Expand don't → do not etc. Requires a re-index."
+msgstr "Espande don't → do not ecc. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:81
+msgid "Custom stop words"
+msgstr "Stop word personalizzate"
+
+#: Admin/FieldLabels.php:81
+msgid "One word per line. Requires a re-index."
+msgstr "Una parola per riga. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:82
+msgid "Disable stop words"
+msgstr "Disattiva le stop word"
+
+#: Admin/FieldLabels.php:82
+msgid "Index even the most common words. Requires a re-index."
+msgstr "Indicizza anche le parole più comuni. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:83
+msgid "Enable synonyms"
+msgstr "Attiva i sinonimi"
+
+#: Admin/FieldLabels.php:83
+msgid "Expand queries with the synonym map below."
+msgstr "Espande le query con la mappa dei sinonimi seguente."
+
+#: Admin/FieldLabels.php:84
+msgid "Synonyms"
+msgstr "Sinonimi"
+
+#: Admin/FieldLabels.php:84
+msgid "One per line: term: synonym1, synonym2"
+msgstr "Uno per riga: termine: sinonimo1, sinonimo2"
+
+#: Admin/FieldLabels.php:85
+msgid "Highlight matches"
+msgstr "Evidenzia le corrispondenze"
+
+#: Admin/FieldLabels.php:85
+msgid "Wrap matching terms in the highlight tag."
+msgstr "Racchiude i termini corrispondenti nel tag di evidenziazione."
+
+#: Admin/FieldLabels.php:86
+msgid "Highlight tag"
+msgstr "Tag di evidenziazione"
+
+#: Admin/FieldLabels.php:86
+msgid "Only this tag is allowed in highlight HTML; everything else is escaped."
+msgstr "Solo questo tag è consentito nell'HTML di evidenziazione; tutto il resto viene sottoposto a escape."
+
+#: Admin/FieldLabels.php:87
+msgid "Snippet length"
+msgstr "Lunghezza dello snippet"
+
+#: Admin/FieldLabels.php:87
+msgid "Characters shown around each match."
+msgstr "Caratteri mostrati attorno a ogni corrispondenza."
+
+#: Admin/FieldLabels.php:88
+msgid "Typeahead suggestions"
+msgstr "Suggerimenti durante la digitazione"
+
+#: Admin/FieldLabels.php:88
+msgid "Suggest results while typing in search fields."
+msgstr "Suggerisce i risultati durante la digitazione nei campi di ricerca."
+
+#: Admin/FieldLabels.php:89
+msgid "Typeahead selector"
+msgstr "Selettore per i suggerimenti durante la digitazione"
+
+#: Admin/FieldLabels.php:89
+msgid "CSS selector for search inputs to enhance."
+msgstr "Selettore CSS per i campi di ricerca da migliorare."
+
+#: Admin/FieldLabels.php:90
+msgid "Typeahead debounce (ms)"
+msgstr "Debounce dei suggerimenti durante la digitazione (ms)"
+
+#: Admin/FieldLabels.php:90
+msgid "Wait this long after typing stops before searching."
+msgstr "Attende questo intervallo dopo la fine della digitazione prima di cercare."
+
+#: Admin/FieldLabels.php:91
+msgid "Typeahead minimum characters"
+msgstr "Caratteri minimi per i suggerimenti durante la digitazione"
+
+#: Admin/FieldLabels.php:91
+msgid "Start suggesting after this many characters."
+msgstr "Inizia a suggerire dopo questo numero di caratteri."
+
+#: Admin/FieldLabels.php:92
+msgid "Typeahead maximum results"
+msgstr "Risultati massimi per i suggerimenti durante la digitazione"
+
+#: Admin/FieldLabels.php:92
+msgid "Suggestions shown per keystroke."
+msgstr "Suggerimenti mostrati per ogni digitazione."
+
+#: Admin/FieldLabels.php:93
+msgid "Enable facets"
+msgstr "Attiva le faccette"
+
+#: Admin/FieldLabels.php:93
+msgid "Count results per post type and taxonomy."
+msgstr "Conta i risultati per tipo di contenuto e tassonomia."
+
+#: Admin/FieldLabels.php:94
+msgid "Post type facet"
+msgstr "Faccetta per tipo di contenuto"
+
+#: Admin/FieldLabels.php:94
+msgid "Include a post-type facet in results."
+msgstr "Include una faccetta per tipo di contenuto nei risultati."
+
+#: Admin/FieldLabels.php:95
+msgid "Facet taxonomies"
+msgstr "Tassonomie delle faccette"
+
+#: Admin/FieldLabels.php:95
+msgid "Only the primary term per post is counted. Requires a re-index."
+msgstr "Viene contato solo il termine principale per ogni contenuto. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:96
+msgid "Facet limit"
+msgstr "Limite delle faccette"
+
+#: Admin/FieldLabels.php:96
+msgid "Values returned per facet."
+msgstr "Valori restituiti per faccetta."
+
+#: Admin/FieldLabels.php:97
+msgid "Enable geo search"
+msgstr "Attiva la ricerca geografica"
+
+#: Admin/FieldLabels.php:97
+msgid "Without SQLite R-Tree, results stay exact but queries are slower. Requires a re-index."
+msgstr "Senza SQLite R-Tree, i risultati restano esatti ma le query sono più lente. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:98
+msgid "Latitude meta key"
+msgstr "Chiave meta della latitudine"
+
+#: Admin/FieldLabels.php:98
+msgid "Post meta key holding the latitude. Requires a re-index."
+msgstr "Chiave dei meta del contenuto che contiene la latitudine. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:99
+msgid "Longitude meta key"
+msgstr "Chiave meta della longitudine"
+
+#: Admin/FieldLabels.php:99
+msgid "Post meta key holding the longitude. Requires a re-index."
+msgstr "Chiave dei meta del contenuto che contiene la longitudine. Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:100
+msgid "Default radius"
+msgstr "Raggio predefinito"
+
+#: Admin/FieldLabels.php:100
+msgid "In the unit selected below."
+msgstr "Nell'unità selezionata qui sotto."
+
+#: Admin/FieldLabels.php:101
+msgid "Distance unit"
+msgstr "Unità di distanza"
+
+#: Admin/FieldLabels.php:101
+msgid "Kilometers or miles."
+msgstr "Chilometri o miglia."
+
+#: Admin/FieldLabels.php:102
+msgid "Distance ranges"
+msgstr "Intervalli di distanza"
+
+#: Admin/FieldLabels.php:102
+msgid "Comma-separated ranges for the distance facet."
+msgstr "Intervalli separati da virgole per la faccetta della distanza."
+
+#: Admin/FieldLabels.php:103
+msgid "Distance weight"
+msgstr "Peso della distanza"
+
+#: Admin/FieldLabels.php:103
+msgid "How strongly distance influences ranking (0–1)."
+msgstr "Quanto la distanza influisce sull'ordinamento (0–1)."
+
+#: Admin/FieldLabels.php:104
+msgid "Price facet"
+msgstr "Faccetta del prezzo"
+
+#: Admin/FieldLabels.php:104
+msgid "Bucket results by price ranges below. Prices index automatically; no re-index needed to toggle."
+msgstr "Raggruppa i risultati per le fasce di prezzo seguenti. I prezzi vengono indicizzati automaticamente; per attivare/disattivare non è necessaria una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:105
+msgid "Price meta key"
+msgstr "Chiave meta del prezzo"
+
+#: Admin/FieldLabels.php:105
+msgid "Post meta key holding the numeric price (WooCommerce: _price). Requires a re-index."
+msgstr "Chiave dei meta del contenuto che contiene il prezzo numerico (WooCommerce: _price). Richiede una nuova indicizzazione."
+
+#: Admin/FieldLabels.php:106
+msgid "Price ranges"
+msgstr "Fasce di prezzo"
+
+#: Admin/FieldLabels.php:106
+msgid "Comma-separated upper bounds, e.g. 100, 500, 1000. Applied at query time."
+msgstr "Limiti superiori separati da virgole, es. 100, 500, 1000. Applicato al momento della ricerca."
+
+#: Admin/FieldLabels.php:107
+msgid "Enable semantic search"
+msgstr "Attiva la ricerca semantica"
+
+#: Admin/FieldLabels.php:107
+msgid "Hybrid keyword + embedding search via an OpenAI-compatible API."
+msgstr "Ricerca ibrida per parole chiave + embedding tramite API compatibile con OpenAI."
+
+#: Admin/FieldLabels.php:108
+msgid "Embedding endpoint"
+msgstr "Endpoint di embedding"
+
+#: Admin/FieldLabels.php:108
+msgid "Base URL, e.g. https://api.openai.com/v1 or http://localhost:11434/v1"
+msgstr "URL di base, es. https://api.openai.com/v1 oppure http://localhost:11434/v1"
+
+#: Admin/FieldLabels.php:109
+msgid "API key"
+msgstr "Chiave API"
+
+#: Admin/FieldLabels.php:109
+msgid "Write-only: blank keeps the stored key. YETISEARCH_SEMANTIC_API_KEY wins."
+msgstr "Solo scrittura: se vuoto, viene mantenuta la chiave salvata. YETISEARCH_SEMANTIC_API_KEY ha la precedenza."
+
+#: Admin/FieldLabels.php:110
+msgid "Embedding model"
+msgstr "Modello di embedding"
+
+#: Admin/FieldLabels.php:110
+msgid "Model id sent to the embedding endpoint."
+msgstr "ID del modello inviato all'endpoint di embedding."
+
+#: Admin/FieldLabels.php:111
+msgid "Dimensions"
+msgstr "Dimensioni"
+
+#: Admin/FieldLabels.php:111
+msgid "0 means auto-detect from the first response."
+msgstr "0 significa rilevamento automatico dalla prima risposta."
+
+#: Admin/FieldLabels.php:112
+msgid "Query prefix"
+msgstr "Prefisso della query"
+
+#: Admin/FieldLabels.php:112
+msgid "Prepended to queries, e.g. for nomic-embed-text."
+msgstr "Aggiunto all'inizio delle query, es. per nomic-embed-text."
+
+#: Admin/FieldLabels.php:113
+msgid "Document prefix"
+msgstr "Prefisso dei documenti"
+
+#: Admin/FieldLabels.php:113
+msgid "Prepended to indexed documents."
+msgstr "Aggiunto all'inizio dei documenti indicizzati."
+
+#: Admin/FieldLabels.php:114
+msgid "Semantic weight"
+msgstr "Peso semantico"
+
+#: Admin/FieldLabels.php:114
+msgid "Hybrid balance between keyword and vector scores."
+msgstr "Bilanciamento ibrido tra punteggi delle parole chiave e vettoriali."
+
+#: Admin/FieldLabels.php:115
+msgid "Minimum similarity"
+msgstr "Similarità minima"
+
+#: Admin/FieldLabels.php:115
+msgid "Vector hits below this are discarded."
+msgstr "I risultati vettoriali al di sotto di questa soglia vengono scartati."
+
+#: Admin/FieldLabels.php:116
+msgid "Minimum margin"
+msgstr "Margine minimo"
+
+#: Admin/FieldLabels.php:116
+msgid "Noise gate: semantic must beat keyword by this margin."
+msgstr "Soglia di rumore: il punteggio semantico deve superare quello delle parole chiave di questo margine."
+
+#: Admin/FieldLabels.php:117
+msgid "Calibration"
+msgstr "Calibrazione"
+
+#: Admin/FieldLabels.php:117
+msgid "Auto measures the noise floor; off disables the gate."
+msgstr "Auto misura il livello di rumore; disattivato disabilita la soglia."
+
+#: Admin/FieldLabels.php:118
+msgid "Calibration strictness"
+msgstr "Severità della calibrazione"
+
+#: Admin/FieldLabels.php:118
+msgid "Higher rejects more semantic noise."
+msgstr "Valori più alti scartano più rumore semantico."
+
+#: Admin/FieldLabels.php:119
+msgid "Embedding batch size"
+msgstr "Dimensione batch di embedding"
+
+#: Admin/FieldLabels.php:119
+msgid "Documents embedded per cron/AJAX batch."
+msgstr "Documenti con embedding elaborati per ogni batch cron/AJAX."
+
+#: Admin/FieldLabels.php:120
+msgid "Query timeout (s)"
+msgstr "Timeout della query (s)"
+
+#: Admin/FieldLabels.php:120
+msgid "Embedding calls slower than this fall back to keyword search."
+msgstr "Le chiamate di embedding più lente ripiegano sulla ricerca per parole chiave."
+
+#: Admin/FieldLabels.php:121
+msgid "Semantic in typeahead"
+msgstr "Ricerca semantica nei suggerimenti durante la digitazione"
+
+#: Admin/FieldLabels.php:121
+msgid "Off by default to keep keystroke latency low."
+msgstr "Disattivata per impostazione predefinita per mantenere bassa la latenza di digitazione."
+
+#: Admin/FieldLabels.php:122
+msgid "Embed via cron"
+msgstr "Embedding tramite cron"
+
+#: Admin/FieldLabels.php:122
+msgid "Embed pending documents every five minutes."
+msgstr "Elabora con embedding i documenti in attesa ogni cinque minuti."
+
+#: Admin/FieldLabels.php:123
+msgid "Query cache"
+msgstr "Cache delle query"
+
+#: Admin/FieldLabels.php:123
+msgid "Cache search results for repeated queries."
+msgstr "Memorizza nella cache i risultati per le query ripetute."
+
+#: Admin/FieldLabels.php:124
+msgid "Cache TTL (s)"
+msgstr "TTL della cache (s)"
+
+#: Admin/FieldLabels.php:124
+msgid "How long cached results stay valid."
+msgstr "Durata di validità dei risultati in cache."
+
+#: Admin/FieldLabels.php:125
+msgid "Cache max size"
+msgstr "Dimensione massima della cache"
+
+#: Admin/FieldLabels.php:125
+msgid "Maximum cached queries held."
+msgstr "Numero massimo di query mantenute in cache."
+
+#: Admin/FieldLabels.php:126
+msgid "Warm-up queries"
+msgstr "Query di preriscaldamento"
+
+#: Admin/FieldLabels.php:126
+msgid "One per line; replayed after clearing the cache."
+msgstr "Una per riga; vengono rieseguite dopo lo svuotamento della cache."
+
+#: Admin/FieldLabels.php:127
+msgid "SQLite synchronous"
+msgstr "Modalità synchronous di SQLite"
+
+#: Admin/FieldLabels.php:127
+msgid "FULL is safer, NORMAL is faster."
+msgstr "FULL è più sicuro, NORMAL è più veloce."
+
+#: Admin/FieldLabels.php:128
+msgid "Maximum results"
+msgstr "Risultati massimi"
+
+#: Admin/FieldLabels.php:128
+msgid "De-duplication window pulled per search."
+msgstr "Finestra di deduplicazione recuperata per ogni ricerca."
+
+#: Admin/FieldLabels.php:129
+msgid "Search mode"
+msgstr "Modalità di ricerca"
+
+#: Admin/FieldLabels.php:129
+msgid "Fast uses the engine total (may include removed posts); verified recounts public posts within the result window (slower transfer). Items are always verified."
+msgstr "Veloce usa il totale del motore (può includere contenuti rimossi); verificata riconta i contenuti pubblici nella finestra dei risultati (trasferimento più lento). Gli elementi sono sempre verificati."
+
+#: Admin/SettingsPage.php:40
+#: Admin/SettingsPage.php:41
+#: Admin/Views/layout.php:22
+msgid "WpYetiSearch\\Vendor\\YetiSearch"
+msgstr ""
+
+#: Admin/SettingsPage.php:112
+msgid "YetiSearch settings changed the index schema. Please re-index on the Maintenance tab."
+msgstr "Le impostazioni di YetiSearch hanno modificato lo schema dell'indice. Esegua una nuova indicizzazione nella scheda Manutenzione."
+
+#: Admin/Views/field.php:61
+msgid "Clear stored key"
+msgstr "Cancella la chiave salvata"
+
+#: Admin/Views/layout.php:24
+msgid "Index schema changed — please re-index on the Maintenance tab."
+msgstr "Lo schema dell'indice è cambiato — esegua una nuova indicizzazione nella scheda Manutenzione."
+
+#: Admin/Views/tab-general.php:16
+msgid "System health"
+msgstr "Integrità del sistema"
+
+#: Admin/Views/tab-general.php:22
+msgid "OK"
+msgstr "OK"
+
+#: Admin/Views/tab-general.php:22
+msgid "FAIL"
+msgstr "Fallito"
+
+#: Admin/Views/tab-general.php:29
+msgid "Re-check"
+msgstr "Riverifica"
+
+#. translators: %s: human-readable time difference, e.g. "2 hours"
+#: Admin/Views/tab-general.php:35
+#, php-format
+msgid "Last checked %s ago. Automatic checks run hourly."
+msgstr "Ultimo controllo %s fa. I controlli automatici vengono eseguiti ogni ora."
+
+#: Admin/Views/tab-general.php:40
+msgid "Notice: SQLite 3.35 or newer is recommended for best performance. Search works on your version."
+msgstr "Avviso: per prestazioni ottimali è consigliato SQLite 3.35 o versione successiva. La ricerca funziona con la versione in uso."
+
+#: Admin/Views/tab-general.php:43
+msgid "Search"
+msgstr "Ricerca"
+
+#: Admin/Views/tab-general.php:50
+msgid "Locked: health checks are not passing."
+msgstr "Bloccato: i controlli di integrità non vengono superati."
+
+#: Admin/Views/tab-general.php:59
+msgid "Current database:"
+msgstr "Database attuale:"
+
+#: Admin/Views/tab-general.php:64
+msgid "Storage protection"
+msgstr "Protezione dello spazio di archiviazione"
+
+#: Admin/Views/tab-general.php:65
+msgid "Server detected:"
+msgstr "Server rilevato:"
+
+#: Admin/Views/tab-general.php:67
+msgid "Probe directory protection"
+msgstr "Verifica la protezione della cartella"
+
+#: Admin/Views/tab-general.php:71
+msgid "Add this rule to your server configuration:"
+msgstr "Aggiunga questa regola alla configurazione del server:"
+
+#: Admin/Views/tab-maintenance.php:5
+msgid "Index"
+msgstr "Indice"
+
+#: Admin/Views/tab-maintenance.php:6
+msgid "Result totals reflect the index snapshot; private or deleted posts are always excluded from the listed items."
+msgstr "I totali dei risultati riflettono l'istantanea dell'indice; i contenuti privati o eliminati sono sempre esclusi dagli elementi elencati."
+
+#: Admin/Views/tab-maintenance.php:8
+msgid "Re-index all posts"
+msgstr "Reindicizza tutti i contenuti"
+
+#: Admin/Views/tab-maintenance.php:9
+msgid "Force (drop and rebuild)"
+msgstr "Forza (elimina e ricostruisci)"
+
+#: Admin/Views/tab-maintenance.php:13
+msgid "Embeddings"
+msgstr "Embedding"
+
+#: Admin/Views/tab-maintenance.php:15
+msgid "Embed pending documents"
+msgstr "Elabora con embedding i documenti in attesa"
+
+#: Admin/Views/tab-maintenance.php:16
+msgid "Calibrate noise gate"
+msgstr "Calibra la soglia di rumore"
+
+#: Admin/Views/tab-maintenance.php:20
+msgid "Cache"
+msgstr "Cache"
+
+#: Admin/Views/tab-maintenance.php:22
+msgid "Clear cache"
+msgstr "Svuota la cache"
+
+#: Admin/Views/tab-maintenance.php:23
+msgid "Warm up cache"
+msgstr "Preriscalda la cache"
+
+#: Admin/Views/tab-maintenance.php:27
+msgid "Error log"
+msgstr "Registro degli errori"
+
+#: Admin/Views/tab-maintenance.php:27
+msgid "Warning and error records from the last 14 days. Newest last."
+msgstr "Record di avvisi ed errori degli ultimi 14 giorni. I più recenti in fondo."
+
+#: Admin/Views/tab-maintenance.php:29
+msgid "Refresh log"
+msgstr "Aggiorna il registro"
+
+#: Admin/Views/tab-maintenance.php:30
+msgid "Clear log"
+msgstr "Svuota il registro"
+
+#: Features/SemanticBridge.php:137
+msgid "Every five minutes (WP YetiSearch)"
+msgstr "Ogni cinque minuti (WP YetiSearch)"
+
+#: Frontend/Assets.php:45
+msgid "No results found"
+msgstr "Nessun risultato trovato"
+
+#. translators: %d: number of suggestions
+#: Frontend/Assets.php:47
+#, php-format
+msgid "%d suggestions available"
+msgstr "%d suggerimenti disponibili"
+
+#: Frontend/RestController.php:72
+msgid "The search term is invalid."
+msgstr "Il termine di ricerca non è valido."
+
+#: Frontend/RestController.php:77
+msgid "This post type is not searchable."
+msgstr "Questo tipo di contenuto non è ricercabile."
+
+#: Frontend/RestController.php:132
+msgid "Search is temporarily unavailable."
+msgstr "La ricerca è temporaneamente non disponibile."
+
+#: Search/template-tags.php:32
+msgid "Did you mean:"
+msgstr "Forse cercavi:"
+
+#: wp-yetisearch.php:26
+msgid "WP YetiSearch requires PHP 8.2 or newer."
+msgstr "WP YetiSearch richiede PHP 8.2 o versione successiva."
+
+#: wp-yetisearch.php:50
+msgid "WP YetiSearch is missing its dependencies. Please reinstall the plugin."
+msgstr "A WP YetiSearch mancano le dipendenze. Reinstalli il plugin."
