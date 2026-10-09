@@ -73,7 +73,9 @@ final class AjaxHandlerTest extends UnitTestCase
 
     public function testReindexRunsOneBulkPage(): void
     {
+        Functions\when('get_option')->alias(static fn (string $k, mixed $d = false): mixed => $k === Config::STEMMED_INDEXES_OPTION ? ['wp_posts' => 'en'] : $d);
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('indexBatch')->once();
         $yeti->shouldReceive('deleteByIdPrefix')->once()->with(Config::INDEX, '1#', false);
         $factory = function (array $args): \WP_Query {
@@ -199,9 +201,11 @@ final class AjaxHandlerTest extends UnitTestCase
 
     public function testReindexParsesPostTypeList(): void
     {
+        Functions\when('get_option')->alias(static fn (string $k, mixed $d = false): mixed => $k === Config::STEMMED_INDEXES_OPTION ? ['wp_posts' => 'en'] : $d);
         Functions\when('update_option')->justReturn(true);
         $seen = [];
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('indexBatch')->once();
         $yeti->shouldReceive('deleteByIdPrefix')->once();
         $yeti->shouldReceive('rebuildFts')->once();

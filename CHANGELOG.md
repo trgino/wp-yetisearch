@@ -3,6 +3,24 @@
 All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.0] - 2026-10-09
+
+### Added
+
+- Stemming via yetisearch 2.6: every index stems in its content language
+  (English/French/German/Spanish built in, Turkish/Italian via bundled
+  custom stemmers). `stemmer_language` gains `turkish`/`italian`; documents
+  carry their post language and queries their request language.
+  Pre-2.6 indexes self-heal through `rebuildFts` on the next indexing run
+  (no full re-crawl needed).
+- Italian stemmer, faithful to the Snowball algorithm (verified 1:1 over
+  its 35,494-word reference vocabulary).
+
+### Changed
+
+- yetisearch `^2.6` (stemming API, stem-weight blending, per-language stop
+  words, unregistered languages no longer stemmed as English).
+
 ## [1.0.0] - 2026-10-08
 
 Initial release.

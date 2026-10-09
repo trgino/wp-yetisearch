@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6fcc07d4904967f9a66b38c652c7a617",
+    "content-hash": "171cc7aa76244f142d7b339b635a0702",
     "packages": [
         {
             "name": "psr/log",
@@ -58,16 +58,16 @@
         },
         {
             "name": "yetidevworks/yetisearch",
-            "version": "2.5.6",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yetidevworks/yetisearch.git",
-                "reference": "41637084c3437b8ffceb521eee7c57a491b1c853"
+                "reference": "5195ecb36fefd6050cfe11aba8631f97b3ca08b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yetidevworks/yetisearch/zipball/41637084c3437b8ffceb521eee7c57a491b1c853",
-                "reference": "41637084c3437b8ffceb521eee7c57a491b1c853",
+                "url": "https://api.github.com/repos/yetidevworks/yetisearch/zipball/5195ecb36fefd6050cfe11aba8631f97b3ca08b6",
+                "reference": "5195ecb36fefd6050cfe11aba8631f97b3ca08b6",
                 "shasum": ""
             },
             "require": {
@@ -106,9 +106,9 @@
             "description": "A powerful, pure-PHP search engine library with advanced features",
             "support": {
                 "issues": "https://github.com/yetidevworks/yetisearch/issues",
-                "source": "https://github.com/yetidevworks/yetisearch/tree/2.5.6"
+                "source": "https://github.com/yetidevworks/yetisearch/tree/2.6.0"
             },
-            "time": "2026-10-08T07:23:11+00:00"
+            "time": "2026-10-09T20:40:52+00:00"
         }
     ],
     "packages-dev": [

@@ -22,6 +22,8 @@ final class IndexerTest extends UnitTestCase
         Functions\when('get_post_meta')->justReturn('');
         Functions\when('wp_is_post_revision')->justReturn(false);
         Functions\when('wp_is_post_autosave')->justReturn(false);
+        Functions\when('get_option')->alias(static fn (string $k, mixed $d = false): mixed => $k === Config::STEMMED_INDEXES_OPTION ? ['wp_posts' => 'en'] : $d);
+        Functions\when('update_option')->justReturn(true);
     }
 
     private static function post(array $props = []): \WP_Post
@@ -32,6 +34,8 @@ final class IndexerTest extends UnitTestCase
     public function testIndexingFailureIsLoggedNotThrown(): void
     {
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([]);
+        $yeti->shouldReceive('createIndex')->once()->with(Config::INDEX, ['stemming' => true, 'language' => 'en']);
         $yeti->shouldReceive('deleteByIdPrefix')->andThrow(new \RuntimeException('database is locked'));
         $logger = new ArrayLogger();
 
@@ -44,6 +48,7 @@ final class IndexerTest extends UnitTestCase
     public function testPublishedPostReplacesItsChunks(): void
     {
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('deleteByIdPrefix')->once()->with(Config::INDEX, '7#', false)->ordered();
         $yeti->shouldReceive('update')->once()->with(Config::INDEX, \Mockery::on(static fn (array $d): bool => $d['id'] === '7'))->ordered();
         $yeti->shouldReceive('clearCache')->once()->ordered();
@@ -102,6 +107,7 @@ final class IndexerTest extends UnitTestCase
     public function testTransitionToPublishSyncs(): void
     {
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('deleteByIdPrefix')->once()->with(Config::INDEX, '7#', false);
         $yeti->shouldReceive('update')->once();
         $yeti->shouldReceive('clearCache')->once();
@@ -113,6 +119,7 @@ final class IndexerTest extends UnitTestCase
     public function testInsertSyncsPublishedPost(): void
     {
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('deleteByIdPrefix')->once()->with(Config::INDEX, '7#', false);
         $yeti->shouldReceive('update')->once();
         $yeti->shouldReceive('clearCache')->once();

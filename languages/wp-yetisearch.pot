@@ -307,7 +307,7 @@ msgid "Stemmer language"
 msgstr ""
 
 #: Admin/FieldLabels.php:77
-msgid "Auto detects English/French/German/Spanish. Requires a re-index."
+msgid "Auto uses the site language. Indexes stem in their content language. Requires a re-index."
 msgstr ""
 
 #: Admin/FieldLabels.php:78

@@ -185,4 +185,97 @@ final class DocumentMapperTest extends UnitTestCase
         self::assertNotNull($doc);
         self::assertSame('', $doc['content']['meta']);
     }
+
+    public function testDocumentLanguageFollowsPostLanguage(): void
+    {
+        Functions\when('pll_get_post_language')->justReturn('tr');
+
+        $doc = (new DocumentMapper(new Config()))->map(self::post());
+
+        self::assertNotNull($doc);
+        self::assertSame('tr', $doc['language']);
+    }
+
+    public function testDocumentLanguageFallsBackToSetting(): void
+    {
+        $doc = (new DocumentMapper(new Config(['stemmer_language' => 'german'])))->map(self::post());
+
+        self::assertNotNull($doc);
+        self::assertSame('german', $doc['language']);
+    }
+
+    public function testCreationSettingsStemInContentLanguage(): void
+    {
+        $mapper = new DocumentMapper(new Config());
+
+        self::assertSame(['stemming' => true, 'language' => 'en'], $mapper->creationSettings('wp_posts'));
+        self::assertSame(['stemming' => true, 'language' => 'tr'], $mapper->creationSettings('wp_posts_tr'));
+    }
+
+    /** @var array<string, mixed> */
+    private array $storedOptions = [];
+
+    /** @param array<string, mixed> $options */
+    private function mapperWithOptions(array $options): DocumentMapper
+    {
+        $this->storedOptions = $options;
+        Functions\when('get_option')->alias(fn (string $k, mixed $d = false): mixed => $this->storedOptions[$k] ?? $d);
+        Functions\when('update_option')->alias(function (string $k, mixed $v): bool {
+            $this->storedOptions[$k] = $v;
+            return true;
+        });
+        return new DocumentMapper(new Config());
+    }
+
+    public function testEnsureIndexCreatesMissingIndex(): void
+    {
+        $yeti = \Mockery::mock(\YetiSearch\YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([]);
+        $yeti->shouldReceive('createIndex')->once()->with('wp_posts', ['stemming' => true, 'language' => 'en']);
+        $yeti->shouldNotReceive('rebuildFts');
+
+        $this->mapperWithOptions([])->ensureIndex($yeti, 'wp_posts');
+
+        self::assertSame('en', $this->storedOptions[Config::STEMMED_INDEXES_OPTION]['wp_posts'] ?? null);
+    }
+
+    public function testEnsureIndexHealsUnstemmedIndex(): void
+    {
+        $yeti = \Mockery::mock(\YetiSearch\YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => 'wp_posts']]);
+        $yeti->shouldNotReceive('createIndex');
+        $yeti->shouldReceive('rebuildFts')->once()->with('wp_posts', ['stemming' => true, 'language' => 'en']);
+
+        $this->mapperWithOptions([])->ensureIndex($yeti, 'wp_posts');
+    }
+
+    public function testEnsureIndexSkipsRecordedIndex(): void
+    {
+        $yeti = \Mockery::mock(\YetiSearch\YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => 'wp_posts']]);
+        $yeti->shouldNotReceive('createIndex', 'rebuildFts');
+
+        $this->mapperWithOptions([Config::STEMMED_INDEXES_OPTION => ['wp_posts' => 'en']])
+            ->ensureIndex($yeti, 'wp_posts');
+    }
+
+    public function testEnsureIndexRebuildsOnLanguageChange(): void
+    {
+        $yeti = \Mockery::mock(\YetiSearch\YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => 'wp_posts']]);
+        $yeti->shouldReceive('rebuildFts')->once();
+
+        $this->mapperWithOptions([Config::STEMMED_INDEXES_OPTION => ['wp_posts' => 'de']])
+            ->ensureIndex($yeti, 'wp_posts');
+    }
+
+    public function testEnsureIndexIgnoresForeignIndexesAndNullEngine(): void
+    {
+        $mapper = new DocumentMapper(new Config());
+
+        $mapper->ensureIndex(null, 'wp_posts');
+        $mapper->ensureIndex(\Mockery::mock(\YetiSearch\YetiSearch::class), 'other_index');
+
+        $this->expectNotToPerformAssertions();
+    }
 }

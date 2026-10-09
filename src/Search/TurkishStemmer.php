@@ -29,12 +29,8 @@ final class TurkishStemmer implements StemmerInterface {
 		return 'tr';
 	}
 
-	public static function registerIfSupported(): bool {
-		if ( ! method_exists( StemmerFactory::class, 'register' ) ) {
-			return false;
-		}
+	public static function register(): void {
 		StemmerFactory::register( 'turkish', self::class, array( 'tr', 'tur' ) );
-		return true;
 	}
 
 	public function stem( string $word ): string {

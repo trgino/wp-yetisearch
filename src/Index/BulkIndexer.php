@@ -92,6 +92,7 @@ final class BulkIndexer {
 				$touched[ $index ]   = true;
 			}
 			foreach ( $batches as $index => $documents ) {
+				$this->mapper->ensureIndex( $yeti, $index );
 				$yeti->indexBatch( $index, $documents );
 				$result['indexed'] += count( $documents );
 			}

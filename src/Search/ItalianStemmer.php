@@ -22,12 +22,8 @@ final class ItalianStemmer implements StemmerInterface {
 		return 'it';
 	}
 
-	public static function registerIfSupported(): bool {
-		if ( ! method_exists( StemmerFactory::class, 'register' ) ) {
-			return false;
-		}
+	public static function register(): void {
 		StemmerFactory::register( 'italian', self::class, array( 'it', 'ita', 'italiano' ) );
-		return true;
 	}
 
 	public function stem( string $word ): string {

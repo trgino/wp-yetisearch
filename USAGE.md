@@ -62,6 +62,14 @@ wp yetisearch cache <clear|warmup>
 
 One index per language via Polylang, Polylang Pro/Woo, or WPML. Search with `?lang=tr` (or rely on the current language on theme pages and in the typeahead). After changing a post's language, run `reindex --force` once.
 
+## Stemming
+
+Every index stems in its content language: English/French/German/Spanish
+use the built-in stemmers, Turkish and Italian use bundled custom stemmers
+(Snowball-faithful). A query matches words as typed or by stem, exact
+matches rank first. Indexes created before stemming existed heal
+themselves on the next indexing run (no full re-crawl needed).
+
 ## Troubleshooting
 
 | Symptom | Fix |

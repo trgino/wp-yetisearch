@@ -18,6 +18,64 @@ final class DocumentMapper {
 		return $this->languages->indexForPost( $post );
 	}
 
+	/** Content language code an index holds (suffix, else the default language). */
+	public function languageForIndex( string $index ): string {
+		return $this->languages->languageForIndex( $index );
+	}
+
+	/** Creation settings for an index: stemming on, in its content language. */
+	public function creationSettings( string $index ): array {
+		return array(
+			'stemming' => true,
+			'language' => $this->languageForIndex( $index ),
+		);
+	}
+
+	/**
+	 * Make sure an index exists with stemming in its language, healing
+	 * pre-2.6 indexes via rebuildFts (no re-crawl needed). Throws on
+	 * engine failure; callers already convert that to logged errors.
+	 */
+	public function ensureIndex( ?\YetiSearch\YetiSearch $yeti, string $index, bool $heal = true ): void {
+		if ( $yeti === null || ! LanguageResolver::isPluginIndex( $index ) ) {
+			return;
+		}
+		$settings = $this->creationSettings( $index );
+		try {
+			$names = array();
+			foreach ( $yeti->listIndices() as $info ) {
+				$name = is_array( $info ) ? ( $info['name'] ?? null ) : null;
+				if ( is_string( $name ) ) {
+					$names[] = $name;
+				}
+			}
+		} catch ( \Throwable ) {
+			$yeti->createIndex( $index, $settings );
+			return;
+		}
+		if ( ! in_array( $index, $names, true ) ) {
+			$yeti->createIndex( $index, $settings );
+			$this->recordStemmed( $index, $settings['language'] );
+			return;
+		}
+		if ( ! $heal ) {
+			return;
+		}
+		$recorded = get_option( Config::STEMMED_INDEXES_OPTION, array() );
+		$recorded = is_array( $recorded ) ? $recorded : array();
+		if ( ( $recorded[ $index ] ?? null ) !== $settings['language'] ) {
+			$yeti->rebuildFts( $index, $settings );
+			$this->recordStemmed( $index, $settings['language'] );
+		}
+	}
+
+	private function recordStemmed( string $index, string $language ): void {
+		$recorded           = get_option( Config::STEMMED_INDEXES_OPTION, array() );
+		$recorded           = is_array( $recorded ) ? $recorded : array();
+		$recorded[ $index ] = $language;
+		update_option( Config::STEMMED_INDEXES_OPTION, $recorded, false );
+	}
+
 	public function isIndexable( \WP_Post $post ): bool {
 		return $post->post_status === 'publish'
 			&& $post->post_password === ''
@@ -93,8 +151,8 @@ final class DocumentMapper {
 			'timestamp' => $parsedDate !== false ? $parsedDate : time(),
 		);
 
-		$language = $this->config->stemmerLanguage();
-		if ( $language !== null ) {
+		$language = $this->languages->postLanguage( $post ) ?? $this->config->stemmerLanguage();
+		if ( $language !== null && $language !== '' ) {
 			$document['language'] = $language;
 		}
 		if ( $geo !== null ) {

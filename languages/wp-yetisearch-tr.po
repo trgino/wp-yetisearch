@@ -308,8 +308,8 @@ msgid "Stemmer language"
 msgstr "Kök bulucu dili"
 
 #: Admin/FieldLabels.php:77
-msgid "Auto detects English/French/German/Spanish. Requires a re-index."
-msgstr "İngilizce/Fransızca/Almanca/İspanyolcayı otomatik algılar. Yeniden dizin oluşturmayı gerektirir."
+msgid "Auto uses the site language. Indexes stem in their content language. Requires a re-index."
+msgstr "Otomatik olarak site dilini kullanır. Dizinler içerik dilinde çekimlenir. Yeniden dizin oluşturmayı gerektirir."
 
 #: Admin/FieldLabels.php:78
 msgid "Minimum word length"

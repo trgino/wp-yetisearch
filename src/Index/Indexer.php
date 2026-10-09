@@ -81,6 +81,7 @@ final class Indexer {
 		}
 		$id = (string) $document['id'];
 		try {
+			$this->mapper->ensureIndex( $this->yeti, $index, false );
 			// Old chunks must go first: a shorter post produces fewer chunks (spec §3.3).
 			$this->yeti->deleteByIdPrefix( $index, $id . '#', false );
 			$this->yeti->update( $index, $document );

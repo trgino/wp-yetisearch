@@ -99,8 +99,8 @@ final class Plugin {
 				$storage = $c->get( 'storage' );
 				$yeti    = new YetiSearch( $config->toYetiConfig( $storage->dbPath() ) );
 				SemanticBridge::attachProvider( $yeti, $config ); // No HTTP on save: provider only embeds via cron/AJAX/CLI.
-				TurkishStemmer::registerIfSupported(); // No-op until the library ships StemmerFactory::register().
-				ItalianStemmer::registerIfSupported(); // Same: dormant custom stemmer.
+				TurkishStemmer::register(); // Custom stemmers for StemmerFactory (2.6+).
+				ItalianStemmer::register();
 				return $yeti;
 			}
 		);

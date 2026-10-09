@@ -53,8 +53,9 @@ if (str_contains($log, "## [$version]")) {
     fwrite(STDERR, "CHANGELOG.md already has [$version]\n");
     exit(1);
 }
-$anchor = "Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).\n";
-$section = "\n## [$version] - $date\n\n### Changed\n\n- \n";
+$eol = str_contains($log, "\r\n") ? "\r\n" : "\n";
+$anchor = "Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).";
+$section = "{$eol}## [$version] - $date{$eol}{$eol}### Changed{$eol}{$eol}- {$eol}";
 if (!str_contains($log, $anchor)) {
     fwrite(STDERR, "CHANGELOG.md anchor not found\n");
     exit(1);

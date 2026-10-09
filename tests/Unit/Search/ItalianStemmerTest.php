@@ -6,6 +6,7 @@ namespace WpYetiSearch\Tests\Unit\Search;
 use PHPUnit\Framework\Attributes\DataProvider;
 use WpYetiSearch\Search\ItalianStemmer;
 use WpYetiSearch\Tests\Unit\UnitTestCase;
+use YetiSearch\Stemmer\StemmerFactory;
 
 final class ItalianStemmerTest extends UnitTestCase
 {
@@ -92,10 +93,18 @@ final class ItalianStemmerTest extends UnitTestCase
         self::assertSame('it', (new ItalianStemmer())->getLanguage());
     }
 
-    public function testRegisterIsDormantWithoutLibrarySupport(): void
+    public function testRegisterExposesItalianToTheFactory(): void
     {
-        // Becomes true once the library ships StemmerFactory::register().
-        self::assertFalse(ItalianStemmer::registerIfSupported());
+        ItalianStemmer::register();
+        try {
+            self::assertTrue(StemmerFactory::isSupported('italian'));
+            self::assertSame('italian', StemmerFactory::canonical('it'));
+            self::assertSame('italian', StemmerFactory::canonical('it_IT'));
+            self::assertInstanceOf(ItalianStemmer::class, StemmerFactory::create('italian'));
+        } finally {
+            StemmerFactory::reset();
+        }
+        self::assertFalse(StemmerFactory::isSupported('italian'), 'reset removes the registration');
     }
 
     public function testStemmingIsIdempotent(): void

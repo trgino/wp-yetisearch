@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace WpYetiSearch\Tests\Unit\Search;
 
+use Brain\Monkey\Functions;
 use WpYetiSearch\Core\Config;
 use WpYetiSearch\Search\ResultNormalizer;
 use WpYetiSearch\Search\SearchService;
@@ -43,6 +44,27 @@ final class SearchServiceTest extends UnitTestCase
         $service = new SearchService($yeti, new Config(), new ResultNormalizer(new Config()));
 
         self::assertSame([], $service->indexStats());
+    }
+
+    public function testFrontQueryUsesCurrentRequestLanguage(): void
+    {
+        Functions\when('pll_current_language')->justReturn('tr');
+        $config = new Config(['stemmer_language' => 'german']);
+        $service = new SearchService(null, $config, new ResultNormalizer($config), new \WpYetiSearch\Index\LanguageResolver());
+
+        $query = $service->frontQuery('vapur', ['post'], 10, 1);
+
+        self::assertSame('tr', $query->getLanguage());
+    }
+
+    public function testFrontQueryFallsBackToConfiguredLanguage(): void
+    {
+        $config = new Config(['stemmer_language' => 'german']);
+        $service = new SearchService(null, $config, new ResultNormalizer($config), new \WpYetiSearch\Index\LanguageResolver());
+
+        $query = $service->frontQuery('boot', ['post'], 10, 1);
+
+        self::assertSame('german', $query->getLanguage());
     }
 
     public function testRunAlwaysDeduplicatesAndForwardsSemanticFlag(): void

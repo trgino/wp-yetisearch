@@ -105,7 +105,9 @@ final class YetiSearchCliTest extends UnitTestCase
 
     public function testIndexRunsBulkIndexerWithProgress(): void
     {
+        $this->options[Config::STEMMED_INDEXES_OPTION] = ['wp_posts' => 'en'];
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('deleteByIdPrefix')->twice();
         $yeti->shouldReceive('indexBatch')->once();
         $yeti->shouldReceive('rebuildFts')->once();
@@ -127,6 +129,7 @@ final class YetiSearchCliTest extends UnitTestCase
 
     public function testIndexPassesOptionsToBulkIndexer(): void
     {
+        $this->options[Config::STEMMED_INDEXES_OPTION] = ['wp_posts' => 'en'];
         $yeti = \Mockery::mock(YetiSearch::class);
         $yeti->shouldReceive('listIndices')->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('clear')->once()->with(Config::INDEX);

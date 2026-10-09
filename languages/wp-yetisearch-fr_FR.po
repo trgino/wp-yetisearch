@@ -308,8 +308,8 @@ msgid "Stemmer language"
 msgstr "Langue de racinisation"
 
 #: Admin/FieldLabels.php:77
-msgid "Auto detects English/French/German/Spanish. Requires a re-index."
-msgstr "Détecte automatiquement l’anglais, le français, l’allemand et l’espagnol. Nécessite une réindexation."
+msgid "Auto uses the site language. Indexes stem in their content language. Requires a re-index."
+msgstr ""
 
 #: Admin/FieldLabels.php:78
 msgid "Minimum word length"

@@ -165,7 +165,7 @@ final class FieldLabels {
 			),
 			'stemmer_language'                => array(
 				'label' => __( 'Stemmer language', 'wp-yetisearch' ),
-				'help'  => __( 'Auto detects English/French/German/Spanish. Requires a re-index.', 'wp-yetisearch' ),
+				'help'  => __( 'Auto uses the site language. Indexes stem in their content language. Requires a re-index.', 'wp-yetisearch' ),
 			),
 			'min_word_length'                 => array(
 				'label' => __( 'Minimum word length', 'wp-yetisearch' ),

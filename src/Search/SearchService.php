@@ -46,6 +46,10 @@ final class SearchService {
 			->limit( $perPage )
 			->offset( ( max( 1, $page ) - 1 ) * $perPage );
 		$query->filter( 'metadata.post_type', $postTypes, 'in' );
+		$current = $this->languages !== null ? $this->languages->currentLanguage() : null;
+		if ( is_string( $current ) && $current !== '' ) {
+			$query->language( $current );
+		}
 
 		return $query;
 	}

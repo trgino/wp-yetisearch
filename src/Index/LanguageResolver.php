@@ -81,6 +81,15 @@ final class LanguageResolver {
 		return Config::INDEX . '_' . sanitize_key( $lang );
 	}
 
+	/** Content language an index holds: suffix code, else the default language. */
+	public function languageForIndex( string $index ): string {
+		$prefix = Config::INDEX . '_';
+		if ( str_starts_with( $index, $prefix ) && strlen( $index ) > strlen( $prefix ) ) {
+			return sanitize_key( substr( $index, strlen( $prefix ) ) );
+		}
+		return $this->defaultLanguage();
+	}
+
 	public static function isPluginIndex( string $name ): bool {
 		return $name === Config::INDEX || str_starts_with( $name, Config::INDEX . '_' );
 	}

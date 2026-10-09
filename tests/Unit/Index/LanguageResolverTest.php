@@ -58,4 +58,16 @@ final class LanguageResolverTest extends UnitTestCase
 
         self::assertSame('en', (new LanguageResolver())->defaultLanguage());
     }
+
+    public function testLanguageForIndexFollowsContentLanguage(): void
+    {
+        Functions\when('pll_get_post_language')->justReturn('tr');
+        Functions\when('pll_default_language')->justReturn('en');
+
+        $resolver = new LanguageResolver();
+
+        self::assertSame('en', $resolver->languageForIndex('wp_posts'));
+        self::assertSame('tr', $resolver->languageForIndex('wp_posts_tr'));
+        self::assertSame('de', $resolver->languageForIndex('wp_posts_de'));
+    }
 }

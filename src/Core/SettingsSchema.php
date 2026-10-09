@@ -212,7 +212,7 @@ final class SettingsSchema {
 				'select',
 				'auto',
 				array(
-					'options' => array( 'auto', 'english', 'french', 'german', 'spanish' ),
+					'options' => array( 'auto', 'english', 'french', 'german', 'spanish', 'turkish', 'italian' ),
 					'reindex' => true,
 				)
 			),

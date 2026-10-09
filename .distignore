@@ -21,3 +21,7 @@ composer.phar
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm
+.gitignore
+.distignore
+.gitattributes
+Dockerfile.release

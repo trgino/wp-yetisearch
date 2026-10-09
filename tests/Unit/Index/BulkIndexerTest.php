@@ -25,6 +25,16 @@ final class BulkIndexerTest extends UnitTestCase
         Functions\when('get_option')->justReturn(false);
     }
 
+    /** get_option serving the stemmed-index record (and NEEDS_REINDEX when asked). */
+    private static function recordedOptions(bool $needsReindex = false): void
+    {
+        Functions\when('get_option')->alias(static fn (string $k, mixed $d = false): mixed => match ($k) {
+            Config::STEMMED_INDEXES_OPTION => ['wp_posts' => 'en', 'wp_posts_tr' => 'tr'],
+            Config::NEEDS_REINDEX_OPTION => $needsReindex,
+            default => $d,
+        });
+    }
+
     private function factory(int $maxPages, int $found = 2): \Closure
     {
         return function (array $args) use ($maxPages, $found): \WP_Query {
@@ -48,8 +58,9 @@ final class BulkIndexerTest extends UnitTestCase
 
     public function testForcedFirstPageClearsThenIndexesOneBatch(): void
     {
+        self::recordedOptions();
         $yeti = \Mockery::mock(YetiSearch::class);
-        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
+        $yeti->shouldReceive('listIndices')->twice()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('clear')->once()->with(Config::INDEX)->ordered();
         $yeti->shouldReceive('indexBatch')->once()->with(Config::INDEX, \Mockery::on(static fn (array $docs): bool => count($docs) === 2))->ordered();
         $yeti->shouldNotReceive('deleteByIdPrefix', 'rebuildFts');
@@ -64,9 +75,9 @@ final class BulkIndexerTest extends UnitTestCase
 
     public function testForcedRunDropsIndexWhenSchemaChanged(): void
     {
-        Functions\when('get_option')->alias(static fn (string $k, mixed $d = false): mixed => $k === Config::NEEDS_REINDEX_OPTION ? true : $d);
+        self::recordedOptions(true);
         $yeti = \Mockery::mock(YetiSearch::class);
-        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
+        $yeti->shouldReceive('listIndices')->twice()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('dropIndex')->once()->with(Config::INDEX);
         $yeti->shouldNotReceive('clear');
         $yeti->shouldReceive('indexBatch')->once();
@@ -136,9 +147,11 @@ final class BulkIndexerTest extends UnitTestCase
 
     public function testResetFallsBackWhenListingFails(): void
     {
+        self::recordedOptions();
         Functions\when('update_option')->justReturn(true);
         $yeti = \Mockery::mock(YetiSearch::class);
-        $yeti->shouldReceive('listIndices')->once()->andThrow(new \RuntimeException('gone'));
+        $yeti->shouldReceive('listIndices')->once()->ordered()->andThrow(new \RuntimeException('gone'));
+        $yeti->shouldReceive('listIndices')->once()->ordered()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('clear')->once()->with(Config::INDEX);
         $yeti->shouldReceive('indexBatch')->once();
         $yeti->shouldReceive('rebuildFts')->once()->with(Config::INDEX);
@@ -154,9 +167,10 @@ final class BulkIndexerTest extends UnitTestCase
 
     public function testResetDropsIndexWhenClearThrows(): void
     {
+        self::recordedOptions();
         Functions\when('update_option')->justReturn(true);
         $yeti = \Mockery::mock(YetiSearch::class);
-        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
+        $yeti->shouldReceive('listIndices')->twice()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('clear')->once()->with(Config::INDEX)->andThrow(new \RuntimeException('no table'));
         $yeti->shouldReceive('dropIndex')->once()->with(Config::INDEX);
         $yeti->shouldReceive('indexBatch')->once();
@@ -168,7 +182,9 @@ final class BulkIndexerTest extends UnitTestCase
 
     public function testIncrementalRunReplacesChunksPerDocument(): void
     {
+        self::recordedOptions();
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('deleteByIdPrefix')->once()->with(Config::INDEX, '1#', false);
         $yeti->shouldReceive('deleteByIdPrefix')->once()->with(Config::INDEX, '2#', false);
         $yeti->shouldReceive('indexBatch')->once();
@@ -178,7 +194,9 @@ final class BulkIndexerTest extends UnitTestCase
 
     public function testLastPageRebuildsAndClearsReindexFlag(): void
     {
+        self::recordedOptions();
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('deleteByIdPrefix');
         $yeti->shouldReceive('indexBatch')->once();
         $yeti->shouldReceive('rebuildFts')->once()->with(Config::INDEX);
@@ -192,7 +210,9 @@ final class BulkIndexerTest extends UnitTestCase
 
     public function testFinishWritesLastReindexTimestamp(): void
     {
+        self::recordedOptions();
         $yeti = \Mockery::mock(YetiSearch::class);
+        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX]]);
         $yeti->shouldReceive('deleteByIdPrefix');
         $yeti->shouldReceive('indexBatch')->once();
         $yeti->shouldReceive('rebuildFts')->once()->with(Config::INDEX);
@@ -230,8 +250,9 @@ final class BulkIndexerTest extends UnitTestCase
     {
         Functions\when('pll_get_post_language')->alias(static fn (int $id): string => $id === 1 ? 'tr' : 'en');
         Functions\when('pll_default_language')->justReturn('en');
+        self::recordedOptions();
         $yeti = \Mockery::mock(YetiSearch::class);
-        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => Config::INDEX], ['name' => 'wp_posts_tr']]);
+        $yeti->shouldReceive('listIndices')->times(3)->andReturn([['name' => Config::INDEX], ['name' => 'wp_posts_tr']]);
         $yeti->shouldReceive('clear')->once()->with(Config::INDEX);
         $yeti->shouldReceive('clear')->once()->with('wp_posts_tr');
         $yeti->shouldReceive('indexBatch')->once()->with(Config::INDEX, \Mockery::on(static fn (array $docs): bool => count($docs) === 1));

@@ -6,6 +6,7 @@ namespace WpYetiSearch\Tests\Unit\Search;
 use PHPUnit\Framework\Attributes\DataProvider;
 use WpYetiSearch\Search\TurkishStemmer;
 use WpYetiSearch\Tests\Unit\UnitTestCase;
+use YetiSearch\Stemmer\StemmerFactory;
 
 final class TurkishStemmerTest extends UnitTestCase
 {
@@ -58,9 +59,17 @@ final class TurkishStemmerTest extends UnitTestCase
         self::assertSame('tr', (new TurkishStemmer())->getLanguage());
     }
 
-    public function testRegisterIsDormantWithoutLibrarySupport(): void
+    public function testRegisterExposesTurkishToTheFactory(): void
     {
-        // Becomes true once the library ships StemmerFactory::register().
-        self::assertFalse(TurkishStemmer::registerIfSupported());
+        TurkishStemmer::register();
+        try {
+            self::assertTrue(StemmerFactory::isSupported('turkish'));
+            self::assertSame('turkish', StemmerFactory::canonical('tr'));
+            self::assertSame('turkish', StemmerFactory::canonical('tur'));
+            self::assertInstanceOf(TurkishStemmer::class, StemmerFactory::create('turkish'));
+        } finally {
+            StemmerFactory::reset();
+        }
+        self::assertFalse(StemmerFactory::isSupported('turkish'), 'reset removes the registration');
     }
 }
