@@ -27,7 +27,7 @@ jobs:
           ls -la "build/wp-yetisearch-$VERSION.zip"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: wp-yetisearch-${{ steps.zip.outputs.version }}
           path: ${{ steps.zip.outputs.file }}
