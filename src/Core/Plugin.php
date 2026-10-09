@@ -20,6 +20,7 @@ use WpYetiSearch\Index\BulkIndexer;
 use WpYetiSearch\Index\DocumentMapper;
 use WpYetiSearch\Index\Indexer;
 use WpYetiSearch\Index\LanguageResolver;
+use WpYetiSearch\Search\ItalianStemmer;
 use WpYetiSearch\Search\QueryBridge;
 use WpYetiSearch\Search\ResultNormalizer;
 use WpYetiSearch\Search\SearchService;
@@ -99,6 +100,7 @@ final class Plugin {
 				$yeti    = new YetiSearch( $config->toYetiConfig( $storage->dbPath() ) );
 				SemanticBridge::attachProvider( $yeti, $config ); // No HTTP on save: provider only embeds via cron/AJAX/CLI.
 				TurkishStemmer::registerIfSupported(); // No-op until the library ships StemmerFactory::register().
+				ItalianStemmer::registerIfSupported(); // Same: dormant custom stemmer.
 				return $yeti;
 			}
 		);
