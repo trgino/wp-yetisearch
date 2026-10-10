@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace WpYetiSearch\Index;
 
 use WpYetiSearch\Core\Config;
+use YetiSearch\Stemmer\StemmerFactory;
 
 /** WP_Post → library document (spec §3.2). */
 final class DocumentMapper {
@@ -41,39 +42,21 @@ final class DocumentMapper {
 			return;
 		}
 		$settings = $this->creationSettings( $index );
-		try {
-			$names = array();
-			foreach ( $yeti->listIndices() as $info ) {
-				$name = is_array( $info ) ? ( $info['name'] ?? null ) : null;
-				if ( is_string( $name ) ) {
-					$names[] = $name;
-				}
-			}
-		} catch ( \Throwable ) {
-			$yeti->createIndex( $index, $settings );
-			return;
-		}
-		if ( ! in_array( $index, $names, true ) ) {
-			$yeti->createIndex( $index, $settings );
-			$this->recordStemmed( $index, $settings['language'] );
-			return;
-		}
+		$yeti->createIndex( $index, $settings ); // No-op when it exists.
 		if ( ! $heal ) {
 			return;
 		}
-		$recorded = get_option( Config::STEMMED_INDEXES_OPTION, array() );
-		$recorded = is_array( $recorded ) ? $recorded : array();
-		if ( ( $recorded[ $index ] ?? null ) !== $settings['language'] ) {
-			$yeti->rebuildFts( $index, $settings );
-			$this->recordStemmed( $index, $settings['language'] );
+		// What stemmingFor() reports once healed: the canonical name when
+		// registered, the code as given otherwise.
+		$wanted = StemmerFactory::canonical( $settings['language'] ) ?? $settings['language'];
+		try {
+			$have = $yeti->stemmingFor( $index );
+		} catch ( \Throwable ) {
+			return;
 		}
-	}
-
-	private function recordStemmed( string $index, string $language ): void {
-		$recorded           = get_option( Config::STEMMED_INDEXES_OPTION, array() );
-		$recorded           = is_array( $recorded ) ? $recorded : array();
-		$recorded[ $index ] = $language;
-		update_option( Config::STEMMED_INDEXES_OPTION, $recorded, false );
+		if ( $have !== $wanted ) {
+			$yeti->rebuildFts( $index, $settings );
+		}
 	}
 
 	public function isIndexable( \WP_Post $post ): bool {

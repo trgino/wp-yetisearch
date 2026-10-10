@@ -212,61 +212,53 @@ final class DocumentMapperTest extends UnitTestCase
         self::assertSame(['stemming' => true, 'language' => 'tr'], $mapper->creationSettings('wp_posts_tr'));
     }
 
-    /** @var array<string, mixed> */
-    private array $storedOptions = [];
-
-    /** @param array<string, mixed> $options */
-    private function mapperWithOptions(array $options): DocumentMapper
-    {
-        $this->storedOptions = $options;
-        Functions\when('get_option')->alias(fn (string $k, mixed $d = false): mixed => $this->storedOptions[$k] ?? $d);
-        Functions\when('update_option')->alias(function (string $k, mixed $v): bool {
-            $this->storedOptions[$k] = $v;
-            return true;
-        });
-        return new DocumentMapper(new Config());
-    }
-
     public function testEnsureIndexCreatesMissingIndex(): void
     {
         $yeti = \Mockery::mock(\YetiSearch\YetiSearch::class);
-        $yeti->shouldReceive('listIndices')->once()->andReturn([]);
         $yeti->shouldReceive('createIndex')->once()->with('wp_posts', ['stemming' => true, 'language' => 'en']);
+        $yeti->shouldReceive('stemmingFor')->once()->with('wp_posts')->andReturn('english');
         $yeti->shouldNotReceive('rebuildFts');
 
-        $this->mapperWithOptions([])->ensureIndex($yeti, 'wp_posts');
-
-        self::assertSame('en', $this->storedOptions[Config::STEMMED_INDEXES_OPTION]['wp_posts'] ?? null);
+        (new DocumentMapper(new Config()))->ensureIndex($yeti, 'wp_posts');
     }
 
     public function testEnsureIndexHealsUnstemmedIndex(): void
     {
         $yeti = \Mockery::mock(\YetiSearch\YetiSearch::class);
-        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => 'wp_posts']]);
-        $yeti->shouldNotReceive('createIndex');
+        $yeti->shouldReceive('createIndex')->once();
+        $yeti->shouldReceive('stemmingFor')->once()->andReturn(null);
         $yeti->shouldReceive('rebuildFts')->once()->with('wp_posts', ['stemming' => true, 'language' => 'en']);
 
-        $this->mapperWithOptions([])->ensureIndex($yeti, 'wp_posts');
+        (new DocumentMapper(new Config()))->ensureIndex($yeti, 'wp_posts');
     }
 
-    public function testEnsureIndexSkipsRecordedIndex(): void
+    public function testEnsureIndexSkipsStemmedIndex(): void
     {
         $yeti = \Mockery::mock(\YetiSearch\YetiSearch::class);
-        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => 'wp_posts']]);
-        $yeti->shouldNotReceive('createIndex', 'rebuildFts');
+        $yeti->shouldReceive('createIndex')->once();
+        $yeti->shouldReceive('stemmingFor')->once()->andReturn('english');
+        $yeti->shouldNotReceive('rebuildFts');
 
-        $this->mapperWithOptions([Config::STEMMED_INDEXES_OPTION => ['wp_posts' => 'en']])
-            ->ensureIndex($yeti, 'wp_posts');
+        (new DocumentMapper(new Config()))->ensureIndex($yeti, 'wp_posts');
     }
 
     public function testEnsureIndexRebuildsOnLanguageChange(): void
     {
         $yeti = \Mockery::mock(\YetiSearch\YetiSearch::class);
-        $yeti->shouldReceive('listIndices')->once()->andReturn([['name' => 'wp_posts']]);
+        $yeti->shouldReceive('createIndex')->once();
+        $yeti->shouldReceive('stemmingFor')->once()->andReturn('de');
         $yeti->shouldReceive('rebuildFts')->once();
 
-        $this->mapperWithOptions([Config::STEMMED_INDEXES_OPTION => ['wp_posts' => 'de']])
-            ->ensureIndex($yeti, 'wp_posts');
+        (new DocumentMapper(new Config()))->ensureIndex($yeti, 'wp_posts');
+    }
+
+    public function testEnsureIndexWithoutHealOnlyCreates(): void
+    {
+        $yeti = \Mockery::mock(\YetiSearch\YetiSearch::class);
+        $yeti->shouldReceive('createIndex')->once();
+        $yeti->shouldNotReceive('stemmingFor', 'rebuildFts');
+
+        (new DocumentMapper(new Config()))->ensureIndex($yeti, 'wp_posts', false);
     }
 
     public function testEnsureIndexIgnoresForeignIndexesAndNullEngine(): void

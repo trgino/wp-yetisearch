@@ -6,10 +6,9 @@ namespace WpYetiSearch\Core;
 /** Read-only, typed view of the stored settings. Saving happens in Admin\SettingsPage. */
 final class Config {
 
-	public const OPTION_KEY             = 'yetisearch_settings';
-	public const NEEDS_REINDEX_OPTION   = 'yetisearch_needs_reindex';
-	public const STEMMED_INDEXES_OPTION = 'yetisearch_stemmed_indexes';
-	public const INDEX                  = 'wp_posts';
+	public const OPTION_KEY           = 'yetisearch_settings';
+	public const NEEDS_REINDEX_OPTION = 'yetisearch_needs_reindex';
+	public const INDEX                = 'wp_posts';
 
 	/** @var array<string, mixed> */
 	private array $settings;

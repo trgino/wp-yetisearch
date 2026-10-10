@@ -4,7 +4,7 @@
  * Plugin Name:       WP YetiSearch
  * Plugin URI:        https://github.com/trgino/wp-yetisearch
  * Description:       Fast, typo-tolerant and semantic search for WordPress powered by SQLite FTS5 (YetiSearch).
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 6.6
  * Requires PHP:      8.2
  * Author:            trgino
@@ -33,7 +33,7 @@ if ( PHP_VERSION_ID < 80200 ) {
 }
 
 if ( ! defined( 'WPYETISEARCH_VERSION' ) ) {
-	define( 'WPYETISEARCH_VERSION', '1.1.0' );
+	define( 'WPYETISEARCH_VERSION', '1.1.1' );
 	define( 'WPYETISEARCH_FILE', __FILE__ );
 	define( 'WPYETISEARCH_PATH', plugin_dir_path( __FILE__ ) );
 	define( 'WPYETISEARCH_URL', plugin_dir_url( __FILE__ ) );

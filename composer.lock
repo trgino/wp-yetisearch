@@ -58,16 +58,16 @@
         },
         {
             "name": "yetidevworks/yetisearch",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yetidevworks/yetisearch.git",
-                "reference": "5195ecb36fefd6050cfe11aba8631f97b3ca08b6"
+                "reference": "536adf5102b7e3a8a0d6b3c7b163979c7096fb42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yetidevworks/yetisearch/zipball/5195ecb36fefd6050cfe11aba8631f97b3ca08b6",
-                "reference": "5195ecb36fefd6050cfe11aba8631f97b3ca08b6",
+                "url": "https://api.github.com/repos/yetidevworks/yetisearch/zipball/536adf5102b7e3a8a0d6b3c7b163979c7096fb42",
+                "reference": "536adf5102b7e3a8a0d6b3c7b163979c7096fb42",
                 "shasum": ""
             },
             "require": {
@@ -106,9 +106,9 @@
             "description": "A powerful, pure-PHP search engine library with advanced features",
             "support": {
                 "issues": "https://github.com/yetidevworks/yetisearch/issues",
-                "source": "https://github.com/yetidevworks/yetisearch/tree/2.6.0"
+                "source": "https://github.com/yetidevworks/yetisearch/tree/2.6.1"
             },
-            "time": "2026-10-09T20:40:52+00:00"
+            "time": "2026-10-09T23:35:25+00:00"
         }
     ],
     "packages-dev": [

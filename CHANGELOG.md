@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+## [1.1.1] - 2026-10-10
+
+### Changed
+
+- yetisearch `2.6.1`: index stemming state is read via `stemmingFor()`
+  (no local bookkeeping), and 2.5.x-polluted indexes heal on first write.
 
 ## [1.1.0] - 2026-10-09
 
